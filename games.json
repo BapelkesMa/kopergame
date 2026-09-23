@@ -1,0 +1,875 @@
+{
+ "diperbarui": "2026-09-23",
+ "pengaturan": {
+  "kunci": {
+   "v": 1,
+   "iter": 600000,
+   "salt": "HIkhVBzJ/y6tREf5XXm0cQ==",
+   "iv": "/RqhM9B8x8HwGwun",
+   "data": "ccA9/hMxAqftkz6nGAi4DLZuvDeEdlbZAA3MDDEQTlRv0GLQqS8PdBHS8rQaRagqaKXRvXml57quMxEJdj7q19KA/ouaWZjUkYFuAlAVCSexjQ0wonEQmLnjz1YWByt+pWvy1LfTlZZh1o732eooIz6tpi+3yCvGIsCDxw=="
+  }
+ },
+ "games": [
+  {
+   "id": "dua-benar",
+   "cat": "kenal",
+   "name": "Dua Benar, Satu Bohong",
+   "tujuan": "Mencairkan suasana dan mengenal sisi lain peserta dengan cara yang lucu.",
+   "dur": 15,
+   "min": 5,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Kertas kecil dan pulpen (opsional).",
+   "langkah": [
+    "Setiap peserta menulis tiga pernyataan tentang dirinya: dua benar, satu bohong.",
+    "Satu per satu peserta membacakan ketiga pernyataannya.",
+    "Peserta lain menebak mana yang bohong dengan mengangkat 1, 2, atau 3 jari.",
+    "Pembaca membuka jawaban yang benar, lalu giliran berikutnya."
+   ],
+   "tips": "Untuk kelas besar, mainkan dalam kelompok 6–8 orang agar tidak memakan waktu.",
+   "refleksi": [
+    "Fakta apa yang paling mengejutkan?",
+    "Seberapa sering kita menilai orang dari kesan pertama?"
+   ],
+   "digital": "",
+   "yt": "two truths and a lie icebreaker",
+   "links": []
+  },
+  {
+   "id": "bingo",
+   "cat": "kenal",
+   "name": "Bingo Kenalan",
+   "tujuan": "Mendorong peserta berkeliling dan mengobrol dengan banyak orang baru.",
+   "dur": 15,
+   "min": 12,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Lembar bingo 4×4 berisi ciri, misalnya: pernah bertugas di puskesmas, bisa bahasa daerah lain, punya anak kembar, suka memasak.",
+   "langkah": [
+    "Bagikan lembar bingo ke setiap peserta.",
+    "Peserta berkeliling mencari orang yang cocok dengan satu kotak, lalu meminta namanya ditulis di kotak itu.",
+    "Satu nama hanya boleh dipakai satu kali per lembar.",
+    "Yang pertama mendapat satu baris penuh berteriak “Bingo!”.",
+    "Cek jawabannya bersama dan minta beberapa orang yang tertulis bercerita singkat."
+   ],
+   "tips": "Sesuaikan isi kotak dengan latar belakang peserta pelatihan agar percakapan nyambung.",
+   "refleksi": [
+    "Siapa yang ternyata punya pengalaman mirip dengan Anda?"
+   ],
+   "digital": "",
+   "yt": "human bingo icebreaker",
+   "links": []
+  },
+  {
+   "id": "barisan-sunyi",
+   "cat": "kenal",
+   "name": "Barisan Tanpa Suara",
+   "tujuan": "Kenalan sekaligus melatih komunikasi nonverbal.",
+   "dur": 10,
+   "min": 10,
+   "max": 40,
+   "space": "gerak",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Minta peserta berdiri dan berbaris urut menurut tanggal dan bulan lahir (Januari di ujung kiri).",
+    "Selama menyusun barisan, peserta tidak boleh bicara, hanya memakai isyarat.",
+    "Setelah selesai, cek urutannya dengan meminta setiap orang menyebut tanggal lahirnya.",
+    "Ulangi dengan kriteria lain, misalnya lama bekerja."
+   ],
+   "tips": "Beri batas waktu 3 menit agar tetap seru.",
+   "refleksi": [
+    "Apa yang membantu kalian berkomunikasi tanpa kata?",
+    "Kapan situasi seperti ini terjadi di tempat kerja?"
+   ],
+   "digital": "",
+   "yt": "silent line up birthday icebreaker",
+   "links": []
+  },
+  {
+   "id": "peta-asal",
+   "cat": "kenal",
+   "name": "Peta Asal",
+   "tujuan": "Mengenal asal daerah dan tempat tugas peserta dengan cepat.",
+   "dur": 10,
+   "min": 10,
+   "max": 50,
+   "space": "gerak",
+   "bahan": "Ruang kosong. Tentukan arah utara di ruangan.",
+   "langkah": [
+    "Umumkan bahwa lantai ruangan adalah peta (misalnya peta NTB atau Indonesia).",
+    "Tunjukkan beberapa titik patokan, seperti Mataram di tengah ruangan.",
+    "Peserta berdiri di posisi yang sesuai dengan daerah asal atau tempat tugasnya.",
+    "Minta tiap “wilayah” menyebut nama dan instansinya.",
+    "Lanjutkan dengan pertanyaan lain, misalnya tempat yang paling ingin dikunjungi."
+   ],
+   "tips": "Cocok untuk pelatihan yang pesertanya datang dari banyak kabupaten.",
+   "refleksi": [
+    "Siapa rekan terdekat dari wilayah Anda yang bisa diajak berjejaring?"
+   ],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "nama-gerak",
+   "cat": "kenal",
+   "name": "Nama dan Gerakan",
+   "tujuan": "Membantu mengingat nama peserta sambil bergerak.",
+   "dur": 10,
+   "min": 8,
+   "max": 30,
+   "space": "gerak",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Peserta berdiri membentuk lingkaran.",
+    "Orang pertama menyebut nama panggilannya sambil membuat satu gerakan sederhana.",
+    "Seluruh kelompok mengulang nama dan gerakan itu bersama-sama.",
+    "Lanjutkan sampai semua peserta mendapat giliran.",
+    "Tutup dengan menunjuk acak satu orang dan kelompok menebak nama serta gerakannya."
+   ],
+   "tips": "Fasilitator sebaiknya memulai dengan contoh yang santai supaya peserta tidak malu.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "benda-tas",
+   "cat": "kenal",
+   "name": "Cerita Benda di Tas",
+   "tujuan": "Perkenalan yang lebih personal lewat benda sehari-hari.",
+   "dur": 15,
+   "min": 5,
+   "max": 30,
+   "space": "duduk",
+   "bahan": "Barang milik peserta sendiri.",
+   "langkah": [
+    "Minta peserta mengambil satu benda dari tas atau saku mereka.",
+    "Setiap peserta memperkenalkan diri dan menjelaskan kenapa benda itu penting atau selalu dibawa.",
+    "Batasi setiap cerita sekitar 30 detik."
+   ],
+   "tips": "Beri contoh dari fasilitator terlebih dulu.",
+   "refleksi": [
+    "Apa yang Anda pelajari tentang rekan dari benda yang dibawanya?"
+   ],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "wawancara",
+   "cat": "kenal",
+   "name": "Wawancara Berpasangan",
+   "tujuan": "Perkenalan mendalam sekaligus melatih mendengar aktif.",
+   "dur": 20,
+   "min": 6,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Daftar 3–4 pertanyaan di layar.",
+   "langkah": [
+    "Pasangkan peserta dengan orang yang belum dikenalnya.",
+    "Masing-masing mewawancarai pasangannya selama 3 menit (nama, tugas, harapan dari pelatihan, satu hal unik).",
+    "Tukar peran.",
+    "Setiap peserta memperkenalkan pasangannya ke seluruh kelas."
+   ],
+   "tips": "Pertanyaan “harapan dari pelatihan” bisa dicatat fasilitator sebagai bahan kontrak belajar.",
+   "refleksi": [
+    "Bagaimana rasanya diperkenalkan oleh orang lain?"
+   ],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "instruktur-berkata",
+   "cat": "energi",
+   "name": "Instruktur Berkata",
+   "tujuan": "Membangkitkan fokus dan energi setelah sesi panjang.",
+   "dur": 5,
+   "min": 5,
+   "max": 100,
+   "space": "gerak",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Semua peserta berdiri.",
+    "Fasilitator memberi perintah gerakan. Peserta hanya boleh bergerak jika perintah diawali “Instruktur berkata…”.",
+    "Jika perintah tidak diawali kalimat itu dan peserta tetap bergerak, ia duduk.",
+    "Percepat tempo perintah secara bertahap."
+   ],
+   "tips": "Pakai gerakan peregangan agar sekaligus melemaskan badan.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "simon says game",
+   "links": []
+  },
+  {
+   "id": "suit-pendukung",
+   "cat": "energi",
+   "name": "Turnamen Suit Pendukung",
+   "tujuan": "Menciptakan keramaian dan tawa dalam waktu singkat.",
+   "dur": 7,
+   "min": 10,
+   "max": 100,
+   "space": "gerak",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Setiap peserta mencari lawan dan bermain suit (batu-gunting-kertas).",
+    "Yang kalah menjadi pendukung pemenang dan meneriakkan namanya.",
+    "Pemenang mencari pemenang lain, pendukungnya ikut di belakang.",
+    "Lanjutkan sampai tersisa dua finalis dengan barisan pendukung panjang.",
+    "Final dimainkan di depan kelas."
+   ],
+   "tips": "Sangat efektif untuk kelas besar setelah makan siang.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "rock paper scissors cheerleader game",
+   "links": []
+  },
+  {
+   "id": "hitung-bersama",
+   "cat": "energi",
+   "name": "Hitung Bersama",
+   "tujuan": "Melatih konsentrasi dan kepekaan terhadap kelompok.",
+   "dur": 5,
+   "min": 6,
+   "max": 30,
+   "space": "duduk",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Kelompok harus menghitung dari 1 sampai 20, satu orang menyebut satu angka.",
+    "Tidak ada urutan giliran dan tidak boleh memberi kode.",
+    "Jika dua orang menyebut angka bersamaan, hitungan kembali ke 1.",
+    "Coba sampai berhasil atau batas waktu habis."
+   ],
+   "tips": "Minta peserta memejamkan mata untuk tantangan tambahan.",
+   "refleksi": [
+    "Apa yang membuat kelompok akhirnya berhasil?"
+   ],
+   "digital": "",
+   "yt": "count to 20 group game",
+   "links": []
+  },
+  {
+   "id": "zip-zap",
+   "cat": "energi",
+   "name": "Zip Zap Zop",
+   "tujuan": "Energizer cepat yang melatih refleks.",
+   "dur": 5,
+   "min": 8,
+   "max": 30,
+   "space": "gerak",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Peserta berdiri melingkar.",
+    "Orang pertama menunjuk seseorang sambil berkata “Zip”.",
+    "Yang ditunjuk langsung menunjuk orang lain sambil berkata “Zap”, lalu berikutnya “Zop”, dan kembali ke “Zip”.",
+    "Yang salah kata atau terlambat keluar dari lingkaran atau menjadi pemandu berikutnya."
+   ],
+   "tips": "Naikkan kecepatan setelah semua peserta paham polanya.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "zip zap zop game",
+   "links": []
+  },
+  {
+   "id": "angin-bertiup",
+   "cat": "energi",
+   "name": "Angin Bertiup",
+   "tujuan": "Membuat peserta berpindah tempat dan berbaur.",
+   "dur": 10,
+   "min": 10,
+   "max": 40,
+   "space": "gerak",
+   "bahan": "Kursi melingkar, jumlahnya satu kurang dari peserta.",
+   "langkah": [
+    "Satu orang berdiri di tengah, peserta lain duduk.",
+    "Orang di tengah berkata “Angin bertiup kepada yang…” diikuti ciri, misalnya “yang memakai jam tangan”.",
+    "Semua yang memiliki ciri itu harus pindah ke kursi lain, orang di tengah ikut berebut kursi.",
+    "Yang tidak mendapat kursi menjadi pemandu berikutnya."
+   ],
+   "tips": "Ingatkan peserta untuk berhati-hati agar tidak bertabrakan.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "the great wind blows game",
+   "links": []
+  },
+  {
+   "id": "peregangan",
+   "cat": "energi",
+   "name": "Peregangan Tiga Menit",
+   "tujuan": "Mengembalikan kesegaran tubuh di sela materi.",
+   "dur": 3,
+   "min": 1,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "Musik (opsional).",
+   "langkah": [
+    "Minta peserta berdiri atau duduk tegak di kursinya.",
+    "Putar leher perlahan ke kanan dan kiri, masing-masing 5 hitungan.",
+    "Angkat bahu, tahan 3 detik, lalu lepaskan. Ulangi 5 kali.",
+    "Rentangkan tangan ke atas dan condongkan badan ke kanan dan kiri.",
+    "Tutup dengan tarik napas dalam tiga kali."
+   ],
+   "tips": "Bisa dilakukan di pelatihan daring maupun luring.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "peregangan di kursi kantor 3 menit",
+   "links": []
+  },
+  {
+   "id": "tepuk-semangat",
+   "cat": "energi",
+   "name": "Tepuk Semangat",
+   "tujuan": "Membangun semangat kelas dengan ritme bersama.",
+   "dur": 3,
+   "min": 1,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Fasilitator mencontohkan pola tepuk, misalnya tiga tepuk pelan, tiga tepuk cepat, lalu “Semangat!”.",
+    "Kelas menirukan bersama.",
+    "Tambah variasi pola, misalnya tepuk paha dan jentik jari.",
+    "Gunakan pola ini sebagai tanda kembali fokus di sesi berikutnya."
+   ],
+   "tips": "Pola tepuk bisa diciptakan bersama peserta di hari pertama.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "lempar-bola",
+   "cat": "kuis",
+   "name": "Lempar Bola Review",
+   "tujuan": "Mengulang poin kunci materi sebelumnya secara aktif.",
+   "dur": 10,
+   "min": 6,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Bola kecil atau gumpalan kertas.",
+   "langkah": [
+    "Fasilitator melempar bola ke seorang peserta.",
+    "Penangkap menyebut satu hal yang ia ingat dari materi sebelumnya.",
+    "Ia melempar bola ke peserta lain yang belum mendapat giliran.",
+    "Jawaban tidak boleh mengulang yang sudah disebut.",
+    "Fasilitator merangkum jawaban di papan."
+   ],
+   "tips": "Pakai di awal hari kedua untuk mengulang materi hari pertama.",
+   "refleksi": [
+    "Poin mana yang belum ada yang menyebut?"
+   ],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "benar-salah",
+   "cat": "kuis",
+   "name": "Benar atau Salah: Berdiri–Duduk",
+   "tujuan": "Mengecek pemahaman seluruh kelas dengan cepat.",
+   "dur": 10,
+   "min": 5,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "8–10 pernyataan tentang materi.",
+   "langkah": [
+    "Tampilkan atau bacakan satu pernyataan.",
+    "Peserta berdiri jika menurutnya benar, tetap duduk jika salah.",
+    "Buka jawaban dan jelaskan singkat alasannya.",
+    "Lanjutkan ke pernyataan berikutnya."
+   ],
+   "tips": "Sisipkan pernyataan yang sering disalahpahami di lapangan agar diskusinya bermakna.",
+   "refleksi": [
+    "Pernyataan mana yang paling banyak dijawab keliru, dan kenapa?"
+   ],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "tebak-istilah",
+   "cat": "kuis",
+   "name": "Tebak Istilah",
+   "tujuan": "Menguatkan pemahaman istilah penting dalam materi.",
+   "dur": 15,
+   "min": 8,
+   "max": 40,
+   "space": "gerak",
+   "bahan": "Kartu berisi istilah dari materi.",
+   "langkah": [
+    "Bagi kelas menjadi dua atau tiga tim.",
+    "Perwakilan tim mengambil satu kartu istilah.",
+    "Ia menjelaskan istilah itu kepada timnya tanpa menyebut kata di kartu, boleh dengan kata lain, gambar, atau gerakan.",
+    "Tim menebak dalam 60 detik. Tebakan benar mendapat poin.",
+    "Tim bergiliran sampai kartu habis."
+   ],
+   "tips": "Gunakan timer satu menit di tab Timer.",
+   "refleksi": [
+    "Istilah mana yang paling sulit dijelaskan? Apa artinya bagi pemahaman kita?"
+   ],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "kursi-panas",
+   "cat": "kuis",
+   "name": "Kursi Panas",
+   "tujuan": "Review materi dengan suasana kompetisi yang ringan.",
+   "dur": 15,
+   "min": 8,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Satu kursi menghadap kelas, layar atau papan di belakangnya.",
+   "langkah": [
+    "Satu peserta duduk di kursi panas membelakangi layar.",
+    "Fasilitator menampilkan satu istilah di layar.",
+    "Kelas memberi petunjuk tanpa menyebut istilahnya.",
+    "Peserta di kursi panas menebak. Ganti orang setelah benar atau setelah 60 detik."
+   ],
+   "tips": "Bisa dimainkan antartim dengan hitungan skor.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "hot seat review game",
+   "links": []
+  },
+  {
+   "id": "bola-salju",
+   "cat": "kuis",
+   "name": "Bola Salju Pertanyaan",
+   "tujuan": "Menampung pertanyaan peserta secara anonim.",
+   "dur": 15,
+   "min": 8,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Kertas bekas dan pulpen.",
+   "langkah": [
+    "Setiap peserta menulis satu pertanyaan tentang materi di selembar kertas tanpa nama.",
+    "Kertas diremas menjadi bola salju.",
+    "Semua peserta saling lempar bola kertas selama 20 detik.",
+    "Setiap orang mengambil satu bola, membacanya, dan mencoba menjawab.",
+    "Pertanyaan yang belum terjawab dibahas fasilitator."
+   ],
+   "tips": "Cocok untuk peserta yang malu bertanya langsung.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "snowball fight questions activity",
+   "links": []
+  },
+  {
+   "id": "tiga-dua-satu",
+   "cat": "refleksi",
+   "name": "Refleksi 3-2-1",
+   "tujuan": "Menutup sesi dan mengukur pemahaman.",
+   "dur": 5,
+   "min": 1,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "Kertas kecil atau sticky note.",
+   "langkah": [
+    "Peserta menulis 3 hal yang dipelajari hari ini.",
+    "Lalu 2 hal yang ingin dicoba di tempat kerja.",
+    "Lalu 1 pertanyaan yang masih tersisa.",
+    "Kumpulkan dan baca cepat untuk menyesuaikan sesi berikutnya."
+   ],
+   "tips": "Tempel sticky note di dinding agar peserta bisa membaca jawaban rekannya.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "menara-koran",
+   "cat": "tim",
+   "name": "Menara Koran",
+   "tujuan": "Melatih perencanaan, pembagian peran, dan kerja sama tim.",
+   "dur": 25,
+   "min": 8,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Per kelompok: 10 lembar koran dan satu gulung selotip.",
+   "langkah": [
+    "Bagi peserta menjadi kelompok 4–6 orang.",
+    "Tugas: membangun menara tertinggi yang bisa berdiri sendiri, hanya dari bahan yang dibagikan.",
+    "Beri 3 menit perencanaan tanpa menyentuh bahan.",
+    "Beri 12 menit untuk membangun.",
+    "Ukur tinggi menara dan umumkan pemenang.",
+    "Lakukan refleksi bersama."
+   ],
+   "tips": "Amati siapa yang memimpin, siapa yang diam, dan bagaimana keputusan diambil. Ini bahan refleksi yang kaya.",
+   "refleksi": [
+    "Bagaimana kelompok membagi peran?",
+    "Apa yang akan dilakukan berbeda jika diulang?",
+    "Apa kaitannya dengan kerja tim di unit Anda?"
+   ],
+   "digital": "",
+   "yt": "newspaper tower team building",
+   "links": []
+  },
+  {
+   "id": "simpul-manusia",
+   "cat": "tim",
+   "name": "Simpul Manusia",
+   "tujuan": "Melatih komunikasi dan pemecahan masalah bersama.",
+   "dur": 15,
+   "min": 8,
+   "max": 40,
+   "space": "gerak",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Bentuk kelompok 8–10 orang yang berdiri melingkar rapat.",
+    "Setiap orang meraih tangan dua orang berbeda di seberangnya (bukan di sebelahnya).",
+    "Tanpa melepas genggaman, kelompok harus mengurai simpul menjadi satu lingkaran.",
+    "Beri waktu 10 menit."
+   ],
+   "tips": "Tanyakan kenyamanan peserta terlebih dulu. Sediakan peran pengamat bagi yang tidak ingin kontak fisik.",
+   "refleksi": [
+    "Siapa yang mengambil inisiatif? Bagaimana instruksi disampaikan?"
+   ],
+   "digital": "",
+   "yt": "human knot team building",
+   "links": []
+  },
+  {
+   "id": "suara-hewan",
+   "cat": "kelompok",
+   "name": "Cari Kelompok Lewat Suara Hewan",
+   "tujuan": "Membagi kelompok secara acak dengan cara menyenangkan.",
+   "dur": 5,
+   "min": 10,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Kertas kecil bertuliskan nama hewan (jumlah jenis hewan = jumlah kelompok).",
+   "langkah": [
+    "Bagikan kertas secara acak. Peserta tidak boleh menunjukkan isinya.",
+    "Peserta menirukan suara hewan di kertasnya sambil berkeliling.",
+    "Peserta berkumpul dengan yang bersuara sama.",
+    "Kelompok yang terbentuk menjadi kelompok diskusi."
+   ],
+   "tips": "Pilih hewan yang suaranya jelas berbeda, misalnya kucing, ayam, kambing, sapi.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "kapal-tenggelam",
+   "cat": "kelompok",
+   "name": "Kapal Tenggelam",
+   "tujuan": "Energizer sekaligus cara cepat membentuk kelompok.",
+   "dur": 8,
+   "min": 12,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Ruang terbuka.",
+   "langkah": [
+    "Peserta berjalan bebas di ruangan.",
+    "Fasilitator berseru, “Kapal tenggelam! Sekoci muat 4 orang!”.",
+    "Peserta cepat membentuk kelompok sesuai angka yang disebut.",
+    "Ulangi dengan angka berbeda. Putaran terakhir memakai angka sesuai ukuran kelompok diskusi yang diinginkan."
+   ],
+   "tips": "Peserta yang tidak kebagian kelompok bisa diberi tugas ringan yang lucu.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "permainan kapal tenggelam",
+   "links": []
+  },
+  {
+   "id": "puzzle-gambar",
+   "cat": "kelompok",
+   "name": "Potongan Gambar",
+   "tujuan": "Membentuk kelompok acak sambil membangun kerja sama kecil.",
+   "dur": 7,
+   "min": 8,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Beberapa gambar (misalnya poster kesehatan) yang masing-masing dipotong sebanyak anggota kelompok.",
+   "langkah": [
+    "Acak semua potongan dan bagikan satu ke setiap peserta.",
+    "Peserta mencari pemegang potongan yang cocok.",
+    "Kelompok menyusun gambarnya hingga utuh.",
+    "Kelompok yang selesai pertama memperkenalkan gambarnya."
+   ],
+   "tips": "Gunakan gambar yang terkait tema pelatihan sebagai pengantar materi.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "gambar-instruksi",
+   "cat": "tim",
+   "name": "Instruksi Satu Arah",
+   "tujuan": "Menunjukkan pentingnya komunikasi dua arah dan umpan balik.",
+   "dur": 20,
+   "min": 6,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Satu gambar bentuk geometris sederhana, kertas kosong untuk peserta.",
+   "langkah": [
+    "Seorang relawan melihat gambar dan duduk membelakangi kelas.",
+    "Ronde 1: relawan menjelaskan gambar, peserta menggambar tanpa boleh bertanya.",
+    "Ronde 2: gambar kedua, kali ini peserta boleh bertanya.",
+    "Bandingkan hasil kedua ronde dengan gambar asli."
+   ],
+   "tips": "Catat waktu tiap ronde. Ronde kedua biasanya lebih lama tapi hasilnya lebih tepat.",
+   "refleksi": [
+    "Apa beda hasil ronde satu dan dua?",
+    "Di mana komunikasi satu arah terjadi dalam pekerjaan kita?"
+   ],
+   "digital": "",
+   "yt": "one way two way communication drawing exercise",
+   "links": []
+  },
+  {
+   "id": "jaring-benang",
+   "cat": "refleksi",
+   "name": "Jaring Benang",
+   "tujuan": "Penutup pelatihan yang menguatkan rasa kebersamaan.",
+   "dur": 15,
+   "min": 8,
+   "max": 30,
+   "space": "gerak",
+   "bahan": "Satu gulung benang wol.",
+   "langkah": [
+    "Peserta berdiri melingkar.",
+    "Pemegang gulungan menyebut satu kesan atau komitmen setelah pelatihan, lalu memegang ujung benang dan melempar gulungan ke orang lain.",
+    "Ulangi sampai semua peserta memegang benang dan terbentuk jaring.",
+    "Fasilitator menutup dengan makna jaring: kita saling terhubung dan saling mendukung."
+   ],
+   "tips": "Foto jaring bersama sebagai kenang-kenangan kelas.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "yarn web closing activity",
+   "links": []
+  },
+  {
+   "id": "permen-warna",
+   "cat": "kelompok",
+   "name": "Permen Warna-warni",
+   "tujuan": "Membagi kelompok acak sambil memberi camilan.",
+   "dur": 5,
+   "min": 8,
+   "max": 80,
+   "space": "gerak",
+   "bahan": "Permen dengan beberapa warna bungkus (jumlah warna = jumlah kelompok) dalam satu kantong tertutup.",
+   "langkah": [
+    "Edarkan kantong permen. Setiap peserta mengambil satu tanpa melihat.",
+    "Peserta mencari rekan dengan warna bungkus yang sama.",
+    "Setiap kelompok warna menyebut satu nama kelompok yang berkaitan dengan warnanya.",
+    "Permen boleh dimakan setelah kelompok lengkap."
+   ],
+   "tips": "Hitung dulu jumlah permen per warna agar kelompok seimbang.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "candy color grouping icebreaker",
+   "links": []
+  },
+  {
+   "id": "senandung",
+   "cat": "kelompok",
+   "name": "Senandung Lagu Daerah",
+   "tujuan": "Membentuk kelompok dengan tawa dan nuansa budaya lokal.",
+   "dur": 7,
+   "min": 10,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Kertas kecil bertuliskan judul lagu daerah yang dikenal, misalnya Tutu Koda, Ampar-Ampar Pisang, Gundul-Gundul Pacul (satu judul untuk satu kelompok).",
+   "langkah": [
+    "Bagikan kertas secara acak dan minta peserta merahasiakannya.",
+    "Peserta bersenandung (tanpa lirik) lagu di kertasnya sambil berkeliling.",
+    "Peserta berkumpul dengan yang menyenandungkan lagu yang sama.",
+    "Setiap kelompok menyanyikan satu bait lagunya bersama sebagai penutup."
+   ],
+   "tips": "Pilih lagu yang nadanya sangat berbeda satu sama lain.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "humming song find your group game",
+   "links": []
+  },
+  {
+   "id": "pasangan-istilah",
+   "cat": "kelompok",
+   "name": "Cari Pasangan Istilah",
+   "tujuan": "Membentuk pasangan sekaligus mengulang istilah materi.",
+   "dur": 7,
+   "min": 8,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Kartu berisi istilah dan kartu berisi definisinya (satu pasang untuk dua orang).",
+   "langkah": [
+    "Bagikan kartu istilah dan kartu definisi secara acak.",
+    "Peserta mencari orang yang memegang pasangan kartunya.",
+    "Pasangan membacakan istilah dan definisinya di depan kelas.",
+    "Pasangan ini menjadi rekan kerja untuk diskusi berikutnya."
+   ],
+   "tips": "Untuk kelompok berempat, pakai istilah, definisi, contoh, dan non-contoh.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "arisan-kelompok",
+   "cat": "kelompok",
+   "name": "Arisan Kelompok",
+   "tujuan": "Mengundi kelompok secara acak di layar, seperti mengocok arisan.",
+   "dur": 5,
+   "min": 4,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "Laptop, proyektor, dan daftar nama peserta.",
+   "langkah": [
+    "Tempel daftar nama peserta di kantong “Main di layar”.",
+    "Tentukan jumlah kelompok.",
+    "Minta satu peserta menjadi “ketua arisan” yang menekan tombol kocok.",
+    "Umumkan hasil undian di layar dan minta peserta pindah ke kelompoknya."
+   ],
+   "tips": "Beri hitungan mundur bersama sebelum tombol ditekan agar terasa seperti arisan sungguhan.",
+   "refleksi": [],
+   "digital": "groups",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "cuaca-hati",
+   "cat": "refleksi",
+   "name": "Laporan Cuaca Hati",
+   "tujuan": "Mengungkapkan perasaan setelah sesi dengan cara ringan.",
+   "dur": 10,
+   "min": 4,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Gambar ikon cuaca di layar atau papan: cerah, berawan, hujan, badai, pelangi.",
+   "langkah": [
+    "Tampilkan ikon cuaca.",
+    "Setiap peserta memilih satu cuaca yang menggambarkan perasaannya tentang sesi hari ini.",
+    "Peserta menjelaskan alasannya dalam satu kalimat, gaya penyiar berita cuaca.",
+    "Fasilitator merangkum “prakiraan cuaca kelas” dan menanggapi yang mendung."
+   ],
+   "tips": "Fasilitator memberi contoh dengan gaya penyiar yang lucu.",
+   "refleksi": [
+    "Apa yang bisa membuat cuaca besok lebih cerah?"
+   ],
+   "digital": "",
+   "yt": "weather report check in activity",
+   "links": []
+  },
+  {
+   "id": "lima-jari",
+   "cat": "refleksi",
+   "name": "Lima Jari",
+   "tujuan": "Refleksi terstruktur memakai tangan sebagai panduan.",
+   "dur": 10,
+   "min": 1,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "Kertas dan pulpen.",
+   "langkah": [
+    "Peserta menjiplak telapak tangannya di kertas.",
+    "Jempol: hal yang berjalan baik. Telunjuk: hal yang ingin ditunjukkan atau dicatat.",
+    "Jari tengah: hal yang kurang menyenangkan. Jari manis: hal yang ingin dipegang dan diterapkan.",
+    "Kelingking: hal kecil yang sering terlupa.",
+    "Beberapa peserta membagikan satu jari pilihannya."
+   ],
+   "tips": "Tempel hasil jiplakan di dinding sebagai galeri refleksi.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "five finger reflection",
+   "links": []
+  },
+  {
+   "id": "satu-kata",
+   "cat": "refleksi",
+   "name": "Satu Kata Melingkar",
+   "tujuan": "Penutup singkat yang menangkap suasana seluruh kelas.",
+   "dur": 5,
+   "min": 4,
+   "max": 40,
+   "space": "duduk",
+   "bahan": "Tidak ada.",
+   "langkah": [
+    "Peserta duduk atau berdiri melingkar.",
+    "Setiap orang secara bergiliran menyebut satu kata yang menggambarkan sesi hari ini.",
+    "Tidak boleh mengulang kata yang sudah disebut.",
+    "Fasilitator menutup dengan merangkai kata-kata itu menjadi satu kalimat."
+   ],
+   "tips": "Catat kata-katanya untuk laporan evaluasi harian.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "pohon-harapan",
+   "cat": "refleksi",
+   "name": "Pohon Harapan",
+   "tujuan": "Menuliskan komitmen tindak lanjut setelah pelatihan.",
+   "dur": 15,
+   "min": 4,
+   "max": 60,
+   "space": "gerak",
+   "bahan": "Gambar batang pohon di kertas plano, sticky note berbentuk daun.",
+   "langkah": [
+    "Tempel gambar batang pohon di dinding.",
+    "Setiap peserta menulis satu komitmen yang akan diterapkan di tempat kerja pada sticky note.",
+    "Peserta menempelkan daunnya ke pohon sambil membacakannya.",
+    "Foto pohon yang sudah rimbun sebagai dokumentasi kelas."
+   ],
+   "tips": "Cocok untuk hari terakhir pelatihan.",
+   "refleksi": [],
+   "digital": "",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "undian-cerita",
+   "cat": "refleksi",
+   "name": "Undian Cerita",
+   "tujuan": "Menunjuk peserta secara adil untuk berbagi refleksi.",
+   "dur": 10,
+   "min": 4,
+   "max": 200,
+   "space": "duduk",
+   "bahan": "Laptop, proyektor, dan daftar nama peserta.",
+   "langkah": [
+    "Tampilkan satu pertanyaan refleksi di layar, misalnya: “Apa satu hal yang akan Anda coba besok?”",
+    "Buka kantong “Main di layar” dan tekan tombol undi.",
+    "Nama yang muncul menjawab pertanyaan dalam 30 detik.",
+    "Ulangi 4–6 kali atau sampai waktu habis."
+   ],
+   "tips": "Beri kesempatan “oper” satu kali agar peserta tidak tertekan.",
+   "refleksi": [],
+   "digital": "pick",
+   "yt": "",
+   "links": []
+  },
+  {
+   "id": "ranjau",
+   "cat": "tim",
+   "name": "Ladang Ranjau",
+   "tujuan": "Melatih kepercayaan dan kejelasan instruksi.",
+   "dur": 20,
+   "min": 8,
+   "max": 40,
+   "space": "gerak",
+   "bahan": "Penutup mata, kertas atau botol plastik sebagai “ranjau”.",
+   "langkah": [
+    "Sebar “ranjau” di lantai dari satu sisi ruangan ke sisi lain.",
+    "Peserta berpasangan: satu ditutup matanya, satu memberi arahan dari tepi.",
+    "Pemberi arahan hanya boleh bicara, tidak boleh menyentuh.",
+    "Yang menyentuh ranjau kembali ke garis awal.",
+    "Tukar peran setelah berhasil."
+   ],
+   "tips": "Pastikan area bebas dari benda berbahaya dan sudut meja.",
+   "refleksi": [
+    "Apa yang membuat instruksi mudah diikuti?",
+    "Bagaimana rasanya harus percaya penuh pada rekan?"
+   ],
+   "digital": "",
+   "yt": "minefield team building blindfold",
+   "links": []
+  }
+ ]
+}
