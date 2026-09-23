@@ -3,11 +3,8 @@
 Perpustakaan permainan ice breaking, energizer, kuis, kerja tim, pembagian kelompok, dan refleksi untuk fasilitator pelatihan. Bapelkes Mataram, Kemenkes Corporate University.
 
 ## Isi repository
-- `index.html` — halaman website untuk fasilitator (hanya tampilan).
-- `games.json` — seluruh data permainan: panduan, bahan, video YouTube, tautan.
-- `admin.html` — halaman untuk mengedit games.json. Buka lewat `/admin.html`.
+- `index.html` — website Koper Games, sekaligus mode admin (tombol 🔒 Admin di kanan atas).
+- `games.json` — seluruh data permainan. Diperbarui otomatis saat admin menyimpan.
 
-## Memperbarui isi permainan
-1. Buka `https://bapelkesma.github.io/kopergame/admin.html`.
-2. Edit permainan, klik **Simpan perubahan**, lalu **Unduh games.json**.
-3. Di repository ini, pilih **Add file → Upload files**, unggah `games.json`, lalu **Commit changes**.
+## Mengedit permainan
+Klik **🔒 Admin**, tempel token GitHub, lalu buka koper/permainan dan gunakan tombol Tambah, Ubah, Duplikat, atau Hapus. Perubahan terbit ke website dalam 1–2 menit.
