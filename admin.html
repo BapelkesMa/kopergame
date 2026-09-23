@@ -77,6 +77,9 @@ legend{font-weight:700;padding:0 4px}
 .help h3{font-family:var(--display);margin:0 0 8px}
 .help ol{margin:0;padding-left:1.3em}.help li{margin-bottom:4px}
 .load{background:var(--panel);border:1.5px dashed var(--line);border-radius:14px;padding:30px;text-align:center;margin-bottom:18px}
+dialog{border:0;border-radius:16px;padding:0;max-width:720px;width:calc(100% - 24px);background:var(--panel);color:var(--ink)}
+dialog::backdrop{background:rgba(8,17,28,.6)}
+.conn{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--brand)}
 .toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;font-weight:700;z-index:20}
 </style>
 </head>
@@ -86,12 +89,13 @@ legend{font-weight:700;padding:0 4px}
   <span class="status" id="status" aria-live="polite">Memuat data…</span>
   <label class="btn ghost" style="display:inline-flex;align-items:center">Buka games.json<input type="file" id="fileIn" accept=".json,application/json" hidden></label>
   <a class="btn ghost" href="./" target="_blank" rel="noopener" style="text-decoration:none">Lihat website</a>
-  <button class="btn brand" id="dlBtn">Unduh games.json</button>
+  <button class="btn ghost" id="dlBtn">Unduh cadangan</button>
+  <button class="btn brand" id="ghBtn">Sambungkan ke GitHub</button>
 </div></div>
 
 <main class="wrap">
   <div class="load" id="loadBox" hidden>
-    <p><strong>Data belum termuat.</strong> Klik “Buka games.json” lalu pilih file games.json dari komputer Anda, atau buka halaman ini dari alamat website di GitHub.</p>
+    <p><strong>Data belum termuat.</strong> Pastikan games.json sudah diunggah ke repository, atau klik “Buka games.json” untuk memilih file dari komputer.</p>
   </div>
   <div class="tiles" id="tiles"></div>
   <div class="layout">
@@ -103,19 +107,35 @@ legend{font-weight:700;padding:0 4px}
     <section>
       <div class="editor" id="editor"><div class="empty">Pilih permainan di sebelah kiri untuk mengedit, atau klik “Tambah” pada salah satu koper.</div></div>
       <div class="help">
-        <h3>Cara menerbitkan perubahan ke website</h3>
+        <h3>Membuat kunci akses GitHub (cukup sekali)</h3>
         <ol>
-          <li>Edit permainan, lalu klik <strong>Simpan perubahan</strong> pada setiap permainan yang diubah.</li>
-          <li>Klik <strong>Unduh games.json</strong> di bagian atas.</li>
-          <li>Buka repository GitHub, klik <strong>Add file</strong> lalu <strong>Upload files</strong>, dan unggah games.json yang baru diunduh (nama file harus tetap <code>games.json</code>).</li>
-          <li>Klik <strong>Commit changes</strong>. Website diperbarui dalam 1–5 menit.</li>
+          <li>Masuk ke GitHub dengan akun BapelkesMa, klik foto profil di kanan atas, lalu <strong>Settings</strong>.</li>
+          <li>Di menu kiri paling bawah, klik <strong>Developer settings</strong>, lalu <strong>Personal access tokens</strong>, lalu <strong>Fine-grained tokens</strong>.</li>
+          <li>Klik <strong>Generate new token</strong>. Isi nama (misal: Admin Koper Games) dan masa berlaku (misal: 1 tahun).</li>
+          <li>Pada <strong>Repository access</strong>, pilih <strong>Only select repositories</strong> lalu pilih <strong>kopergame</strong>.</li>
+          <li>Pada <strong>Permissions</strong>, buka <strong>Repository permissions</strong>, cari <strong>Contents</strong>, ubah menjadi <strong>Read and write</strong>.</li>
+          <li>Klik <strong>Generate token</strong>, salin kode yang muncul (diawali <code>github_pat_</code>), lalu tempel di tombol <strong>Sambungkan ke GitHub</strong> di atas.</li>
         </ol>
-        <p style="color:var(--muted);margin:10px 0 0">Suntingan Anda tersimpan sementara di browser ini sampai file diunduh, jadi aman bila halaman tidak sengaja tertutup.</p>
+        <p style="color:var(--muted);margin:10px 0 0">Jangan bagikan token ke orang di luar tim admin. Token hanya bisa mengubah isi repository kopergame. Kalau perangkat dipakai bersama, klik “Hapus token dari perangkat ini” setelah selesai.</p>
       </div>
     </section>
   </div>
 </main>
 <div class="toast" id="toast" hidden></div>
+<dialog id="ghDlg" aria-labelledby="ghTitle">
+  <div class="ed-head"><div class="inner"><h2 id="ghTitle">Sambungkan ke GitHub</h2></div></div>
+  <div class="form">
+    <p style="margin:0;color:var(--muted)">Setelah tersambung, setiap kali Anda menekan <strong>Simpan & terbitkan</strong>, perubahan langsung dikirim ke GitHub dan website ikut diperbarui dalam 1–2 menit. Kunci akses hanya tersimpan di browser perangkat ini.</p>
+    <div class="three">
+      <label>Akun GitHub<input id="ghOwner" placeholder="BapelkesMa"></label>
+      <label>Repository<input id="ghRepo" placeholder="kopergame"></label>
+      <label>Branch<input id="ghBranch" placeholder="main"></label>
+    </div>
+    <label>Kunci akses (token) <small>Diawali <code>github_pat_</code>. Lihat cara membuatnya di panduan di bawah halaman.</small><input id="ghToken" type="password" autocomplete="off" placeholder="github_pat_..."></label>
+    <p class="err" id="ghErr" aria-live="polite"></p>
+  </div>
+  <div class="acts"><button class="btn brand" id="ghSave">Simpan & uji sambungan</button><button class="btn ghost" id="ghCancel">Tutup</button><button class="btn danger" id="ghForget">Hapus token dari perangkat ini</button></div>
+</dialog>
 
 <script>
 const CATS={kenal:"Perkenalan & Ice Breaking",energi:"Energizer",kuis:"Kuis & Review Materi",tim:"Kerja Tim",kelompok:"Pembagian Kelompok",refleksi:"Refleksi"};
@@ -127,12 +147,13 @@ let data=null,dirty=false,sel=null,formDirty=false;
 const $=id=>document.getElementById(id);
 function toast(t){const el=$("toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,2400)}
 function setDirty(v){dirty=v;const st=$("status");
-  st.textContent=v?"Ada perubahan yang belum diunduh":"Semua perubahan sudah tersimpan di file";st.classList.toggle("dirty",v);
+  st.textContent=v?"Ada perubahan yang belum terbit":"Tidak ada perubahan tertunda";st.classList.toggle("dirty",v);
   if(v)store.set("km-admin-draft",{saved:new Date().toISOString(),data});else store.del("km-admin-draft")}
 window.addEventListener("beforeunload",e=>{if(dirty||formDirty){e.preventDefault();e.returnValue=""}});
 
 function load(d,fromDraft){
   if(!d||!Array.isArray(d.games)){toast("File tidak dikenali sebagai games.json");return}
+  if(typeof paintConn==="function")setTimeout(paintConn);
   data=d;sel=null;formDirty=false;$("loadBox").hidden=true;renderAll();$("editor").innerHTML=`<div class="empty">Pilih permainan di sebelah kiri untuk mengedit, atau klik “Tambah” pada salah satu koper.</div>`;
   setDirty(!!fromDraft);if(!fromDraft)$("status").textContent=`${d.games.length} permainan termuat`;
 }
@@ -191,11 +212,11 @@ function renderEditor(){
   $("form").addEventListener("input",()=>formDirty=true);$("form").addEventListener("change",()=>formDirty=true);
   $("fCat").onchange=e=>{ed.className="editor c-"+e.target.value;formDirty=true};
   $("fAddLink").onclick=()=>{linkRow();formDirty=true};
-  $("saveBtn").onclick=save;
+  $("saveBtn").onclick=save;paintConn();
   $("cancelBtn").onclick=()=>{formDirty=false;renderEditor()};
-  $("delBtn").onclick=()=>{if(!confirm(`Hapus “${g.name}” dari perpustakaan?`))return;data.games.splice(sel,1);sel=null;formDirty=false;renderAll();$("editor").className="editor";$("editor").innerHTML=`<div class="empty">Permainan dihapus. Jangan lupa unduh games.json.</div>`;setDirty(true)};
-  $("dupBtn").onclick=()=>{if(!confirmLeave())return;const c=JSON.parse(JSON.stringify(g));c.id="g-"+Date.now().toString(36);c.name=g.name+" (salinan)";data.games.splice(sel+1,0,c);sel=sel+1;formDirty=false;renderAll();renderEditor();setDirty(true);toast("Salinan dibuat")};
-  const move=d=>{const same=data.games.map((x,i)=>i).filter(i=>data.games[i].cat===g.cat);const p=same.indexOf(sel),t=same[p+d];if(t===undefined)return;[data.games[sel],data.games[t]]=[data.games[t],data.games[sel]];sel=t;renderAll();setDirty(true)};
+  $("delBtn").onclick=()=>{if(!confirm(`Hapus “${g.name}” dari perpustakaan?`))return;data.games.splice(sel,1);sel=null;formDirty=false;renderAll();$("editor").className="editor";$("editor").innerHTML=`<div class="empty">Permainan dihapus.</div>`;setDirty(true);publish()};
+  $("dupBtn").onclick=()=>{if(!confirmLeave())return;const c=JSON.parse(JSON.stringify(g));c.id="g-"+Date.now().toString(36);c.name=g.name+" (salinan)";data.games.splice(sel+1,0,c);sel=sel+1;formDirty=false;renderAll();renderEditor();setDirty(true);publish();toast("Salinan dibuat")};
+  const move=d=>{const same=data.games.map((x,i)=>i).filter(i=>data.games[i].cat===g.cat);const p=same.indexOf(sel),t=same[p+d];if(t===undefined)return;[data.games[sel],data.games[t]]=[data.games[t],data.games[sel]];sel=t;renderAll();setDirty(true);publish()};
   $("upBtn").onclick=()=>{if(formDirty){toast("Simpan perubahan dulu");return}move(-1)};
   $("downBtn").onclick=()=>{if(formDirty){toast("Simpan perubahan dulu");return}move(1)};
 }
@@ -211,24 +232,79 @@ function save(){
   if(g.min>g.max){err.textContent="Jumlah peserta paling sedikit melebihi yang paling banyak.";return}
   const bad=g.links.find(l=>!safeUrl(l.url));if(bad){err.textContent=`Tautan “${bad.url||bad.label}” belum lengkap. Awali dengan https://`;return}
   g.links=g.links.map(l=>({label:l.label||(ytId(l.url)?"Video contoh":l.url),url:l.url}));
-  data.games[sel]=g;formDirty=false;setDirty(true);renderAll();$("edTitle").textContent=g.name;err.textContent="";toast("Perubahan tersimpan. Unduh games.json untuk menerbitkan.");
+  data.games[sel]=g;formDirty=false;setDirty(true);renderAll();$("edTitle").textContent=g.name;err.textContent="";if(connected()){publish();toast("Tersimpan. Sedang diterbitkan ke website…")}else toast("Tersimpan di browser. Sambungkan ke GitHub agar langsung terbit, atau unduh cadangan.");
 }
 $("dlBtn").onclick=()=>{
   if(!data)return;if(formDirty&&!confirm("Ada perubahan pada permainan yang sedang dibuka yang belum disimpan. Tetap unduh tanpa perubahan itu?"))return;
   data.diperbarui=new Date().toISOString().slice(0,10);
   const blob=new Blob([JSON.stringify(data,null,1)],{type:"application/json"});
   const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="games.json";document.body.appendChild(a);a.click();a.remove();
-  setTimeout(()=>URL.revokeObjectURL(a.href),2000);setDirty(false);toast("games.json terunduh. Unggah ke GitHub untuk menerbitkan.");
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);if(!connected())setDirty(false);toast("Cadangan games.json terunduh.");
 };
 $("fileIn").onchange=e=>{const f=e.target.files[0];if(!f)return;if(dirty&&!confirm("Ganti data yang sedang diedit dengan file ini?"))return;
   const r=new FileReader();r.onload=()=>{try{load(JSON.parse(r.result))}catch(x){toast("File tidak bisa dibaca")}};r.readAsText(f);e.target.value=""};
 
-// boot: draft > website games.json
+
+// ================= GitHub =================
+const guess=(()=>{const h=location.hostname;if(h.endsWith(".github.io")){return {owner:h.split(".")[0],repo:(location.pathname.split("/").filter(Boolean)[0]||"").replace(/\.html$/,"")}}return {}})();
+let gh=Object.assign({owner:"BapelkesMa",repo:"kopergame",branch:"main",token:""},guess.repo&&!guess.repo.includes("admin")?guess:{},store.get("km-gh",{}));
+let ghSha=null,publishing=Promise.resolve(),pending=false;
+const connected=()=>!!(gh.token&&gh.owner&&gh.repo);
+const api=p=>`https://api.github.com/repos/${encodeURIComponent(gh.owner)}/${encodeURIComponent(gh.repo)}/${p}`;
+const hdr=()=>({"Authorization":"Bearer "+gh.token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"});
+function b64decode(c){const bin=atob(c.replace(/\n/g,""));const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return new TextDecoder().decode(u)}
+function b64encode(t){const u=new TextEncoder().encode(t);let bin="";for(let i=0;i<u.length;i+=0x8000)bin+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(bin)}
+function ghMsg(st){if(st===401)return"Token salah atau sudah kedaluwarsa. Buat token baru.";if(st===403)return"Token belum punya izin menulis. Pastikan Contents diatur ke Read and write.";if(st===404)return"Repository atau file tidak ditemukan. Periksa nama akun, repository, dan pastikan token memilih repository ini.";if(st===409)return"Ada perubahan lain di GitHub pada saat bersamaan. Muat ulang halaman lalu coba lagi.";return"Gagal tersambung ke GitHub (kode "+st+"). Periksa koneksi internet."}
+async function ghRead(){
+  const r=await fetch(api(`contents/games.json?ref=${encodeURIComponent(gh.branch||"main")}`),{headers:hdr(),cache:"no-store"});
+  if(!r.ok) throw r.status;const j=await r.json();ghSha=j.sha;return JSON.parse(b64decode(j.content));
+}
+async function ghWrite(){
+  data.diperbarui=new Date().toISOString().slice(0,10);
+  const body={message:"Perbarui data permainan dari halaman admin",content:b64encode(JSON.stringify(data,null,1)),branch:gh.branch||"main"};
+  if(ghSha)body.sha=ghSha;
+  let r=await fetch(api("contents/games.json"),{method:"PUT",headers:hdr(),body:JSON.stringify(body)});
+  if(r.status===409||r.status===422){ // sha lama: ambil sha terbaru lalu coba sekali lagi
+    const g=await fetch(api(`contents/games.json?ref=${encodeURIComponent(gh.branch||"main")}`),{headers:hdr(),cache:"no-store"});
+    if(g.ok){ghSha=(await g.json()).sha;body.sha=ghSha;r=await fetch(api("contents/games.json"),{method:"PUT",headers:hdr(),body:JSON.stringify(body)})}
+  }
+  if(!r.ok) throw r.status;const j=await r.json();ghSha=j.content&&j.content.sha;
+}
+function publish(){
+  if(!connected()) return;
+  pending=true;$("status").textContent="Menerbitkan ke website…";$("status").classList.remove("dirty");
+  publishing=publishing.then(async()=>{
+    if(!pending) return;pending=false;
+    try{await ghWrite();setDirty(false);$("status").innerHTML='<span class="conn">✓ Terbit.</span> Website diperbarui dalam 1–2 menit.'}
+    catch(st){setDirty(true);$("status").textContent="Belum terbit: "+ghMsg(typeof st==="number"?st:0)}
+  });
+}
+function paintConn(){$("ghBtn").textContent=connected()?"Tersambung ke GitHub":"Sambungkan ke GitHub";$("ghBtn").classList.toggle("ghost",connected());$("ghBtn").classList.toggle("brand",!connected());const sb=$("saveBtn");if(sb)sb.textContent=connected()?"Simpan & terbitkan":"Simpan perubahan"}
+const ghDlg=$("ghDlg");
+$("ghBtn").onclick=()=>{$("ghOwner").value=gh.owner||"";$("ghRepo").value=gh.repo||"";$("ghBranch").value=gh.branch||"main";$("ghToken").value=gh.token||"";$("ghErr").textContent="";ghDlg.showModal()};
+$("ghCancel").onclick=()=>ghDlg.close();
+$("ghForget").onclick=()=>{gh.token="";store.set("km-gh",{owner:gh.owner,repo:gh.repo,branch:gh.branch});paintConn();ghDlg.close();toast("Token dihapus dari perangkat ini")};
+$("ghSave").onclick=async()=>{
+  const n={owner:$("ghOwner").value.trim(),repo:$("ghRepo").value.trim(),branch:$("ghBranch").value.trim()||"main",token:$("ghToken").value.trim()};
+  if(!n.owner||!n.repo||!n.token){$("ghErr").textContent="Isi akun, repository, dan token.";return}
+  const old=gh;gh=n;$("ghErr").textContent="Menguji sambungan…";
+  try{
+    let fresh=null;
+    try{fresh=await ghRead()}catch(st){if(st!==404)throw st;ghSha=null}
+    store.set("km-gh",gh);paintConn();ghDlg.close();
+    if(fresh&&!dirty) load(fresh);
+    toast(fresh?"Tersambung. Data terbaru dari GitHub sudah dimuat.":"Tersambung. games.json akan dibuat saat Anda pertama menyimpan.");
+    if(dirty) publish();
+  }catch(st){gh=old;$("ghErr").textContent=ghMsg(typeof st==="number"?st:0)}
+};
+
+// boot: draft > GitHub/website games.json
+paintConn();
 const draft=store.get("km-admin-draft",null);
-fetch("games.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
-  if(draft&&confirm(`Ada suntingan yang belum diunduh sejak ${new Date(draft.saved).toLocaleString("id-ID")}. Lanjutkan suntingan itu?`)) load(draft.data,true); else {store.del("km-admin-draft");load(d)}
+(connected()?ghRead().catch(()=>fetch("games.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject())):fetch("games.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject())).then(d=>{
+  if(draft&&confirm(`Ada suntingan yang belum terbit sejak ${new Date(draft.saved).toLocaleString("id-ID")}. Lanjutkan suntingan itu?`)) load(draft.data,true); else {store.del("km-admin-draft");load(d)}
 }).catch(()=>{
-  if(draft&&confirm("Ada suntingan yang belum diunduh. Lanjutkan suntingan itu?")) load(draft.data,true);
+  if(draft&&confirm("Ada suntingan yang belum terbit. Lanjutkan suntingan itu?")) load(draft.data,true);
   else{$("loadBox").hidden=false;$("status").textContent="Data belum termuat"}
 });
 </script>
