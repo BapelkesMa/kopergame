@@ -178,6 +178,9 @@ body.is-admin .admin-only{display:inline-flex!important}
 .dlg-actions .spacer{flex:1}
 body.is-admin .dlg-actions .btn{padding:9px 12px;font-size:.92rem}
 body.is-admin #dlgStage{padding:9px 14px}
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:560px){.two{grid-template-columns:1fr}}
+.linkish{background:none;border:0;padding:0;color:var(--kuis);font-weight:700;text-align:left;text-decoration:underline;justify-self:start}
 .lgadv summary{cursor:pointer;color:var(--muted);font-weight:700}
 .check{display:flex!important;grid-template-columns:none;gap:8px;align-items:center;font-weight:400!important}
 .check input{width:auto!important}
@@ -246,6 +249,8 @@ body.is-admin #dlgStage{padding:9px 14px}
   <span class="tag">MODE ADMIN</span>
   <span class="astatus" id="adminStatus" aria-live="polite"></span>
   <button class="btn" id="retryBtn" hidden>Coba terbitkan lagi</button>
+  <button class="btn" id="dashBtn">Dashboard</button>
+  <button class="btn ghost" id="setBtn">Pengaturan</button>
   <button class="btn ghost" id="logoutBtn">Keluar</button>
 </div></div>
 <header class="top wrap" id="hero">
@@ -266,6 +271,20 @@ body.is-admin #dlgStage{padding:9px 14px}
     <div class="base" id="catList"></div>
   </section>
 
+  <section id="dash" class="dash" hidden>
+    <button class="back" id="dashBack">‹ Kembali ke semua koper</button>
+    <h2>Dashboard</h2>
+    <p class="sub">Statistik pengunjung dan isi perpustakaan Koper Games. Hanya terlihat oleh admin.</p>
+    <p class="note" id="dashNote" hidden></p>
+    <div class="tiles" id="tiles"></div>
+    <div class="panels">
+      <div class="panel"><h3>Koper paling sering dibuka</h3><div id="topCats"></div></div>
+      <div class="panel"><h3>Permainan paling sering dibuka</h3><div id="topGames"></div></div>
+      <div class="panel"><h3>Isi tiap koper</h3><div id="catCounts"></div></div>
+      <div class="panel"><h3>Permainan belum ada video</h3><ul class="recent" id="noVideo"></ul></div>
+    </div>
+    <p style="margin-top:18px" id="gcLinkWrap" hidden><a class="btn" id="gcLink" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Lihat statistik lengkap: grafik harian, perangkat, asal kunjungan</a></p>
+  </section>
 </main>
 <footer class="foot"><div class="wrap">Koper Games Pelatihan · Bapelkes Mataram, Kemenkes Corporate University</div></footer>
 
@@ -289,16 +308,34 @@ body.is-admin #dlgStage{padding:9px 14px}
 
 
 <dialog id="loginDlg" aria-labelledby="lgTitle" class="c-tim">
-  <div class="dlg-lid"><div class="inner"><h2 id="lgTitle">Masuk sebagai admin</h2><div class="meta">Tempel kunci akses (token) GitHub milik akun Bapelkes untuk mengedit isi Koper Games.</div></div>
+  <div class="dlg-lid"><div class="inner"><h2 id="lgTitle">Masuk sebagai admin</h2><div class="meta" id="lgIntro"></div></div>
     <button class="close" id="lgCancel" aria-label="Tutup">×</button></div>
   <div class="dlg-body"><div class="form">
-    <label>Kunci akses (token)<input id="lgToken" type="password" autocomplete="off" placeholder="ghp_... atau github_pat_..."></label>
+    <label id="lgPwWrap">Kata sandi admin<input id="lgPw" type="password" autocomplete="current-password"></label>
+    <label id="lgTokWrap">Kunci akses (token) GitHub<input id="lgToken" type="password" autocomplete="off" placeholder="ghp_... atau github_pat_..."></label>
     <label class="check"><input type="checkbox" id="lgRemember"> Ingat di perangkat ini (jangan dicentang di komputer bersama)</label>
-    <details class="lgadv"><summary>Pengaturan repository</summary>
+    <button class="linkish" type="button" id="lgSwitch"></button>
+    <details class="lgadv" id="lgAdv"><summary>Pengaturan repository</summary>
       <div class="three" style="margin-top:10px"><label>Akun<input id="lgOwner"></label><label>Repository<input id="lgRepo"></label><label>Branch<input id="lgBranch"></label></div></details>
     <p class="err" id="lgErr" aria-live="polite"></p>
   </div></div>
   <div class="dlg-actions"><button class="btn" id="lgGo">Masuk</button></div>
+</dialog>
+
+<dialog id="setDlg" aria-labelledby="setTitle" class="c-tim">
+  <div class="dlg-lid"><div class="inner"><h2 id="setTitle">Pengaturan admin</h2><div class="meta">Tersimpan di website dan berlaku untuk semua admin.</div></div>
+    <button class="close" id="setClose" aria-label="Tutup">×</button></div>
+  <div class="dlg-body"><div class="form">
+    <h4 style="margin:0">Kata sandi admin</h4>
+    <p class="hint" style="margin:0">Admin cukup mengetik kata sandi ini untuk masuk. Token GitHub disimpan dalam keadaan terkunci (terenkripsi) oleh kata sandi ini. Gunakan minimal 12 karakter yang sulit ditebak, dan jangan sama dengan kata sandi lain.</p>
+    <div class="two"><label>Kata sandi baru<input id="sPw1" type="password" autocomplete="new-password"></label><label>Ulangi kata sandi<input id="sPw2" type="password" autocomplete="new-password"></label></div>
+    <p class="hint" id="sPwState" style="margin:0"></p>
+    <h4 style="margin:8px 0 0">Statistik pengunjung (GoatCounter)</h4>
+    <p class="hint" style="margin:0">Isi kode situs GoatCounter, misalnya <code>kopergame-bapelkes</code> dari alamat <code>kopergame-bapelkes.goatcounter.com</code>. Kosongkan untuk mematikan statistik.</p>
+    <label>Kode GoatCounter<input id="sGc" maxlength="50" placeholder="kopergame-bapelkes"></label>
+    <p class="err" id="sErr" aria-live="polite"></p>
+  </div></div>
+  <div class="dlg-actions"><button class="btn" id="sSave">Simpan &amp; terbitkan</button></div>
 </dialog>
 
 <dialog id="formDlg" aria-labelledby="formTitle">
@@ -371,6 +408,8 @@ function norm(d){
     links:Array.isArray(d.links)?d.links.filter(l=>l&&safeUrl(l.url)).map(l=>({label:String(l.label||l.url),url:l.url})):[]};
 }
 let GAMES=FALLBACK.games.map(norm);
+let META={};
+function applyData(d){GAMES=d.games.map(norm);META=(d.pengaturan&&typeof d.pengaturan==="object")?d.pengaturan:{};if(typeof initStats==="function")initStats()}
 const findGame=id=>GAMES.find(g=>g.id===id);
 
 // ---- views
@@ -505,7 +544,7 @@ document.addEventListener("keydown",e=>{if(stage.hidden)return;
 renderRack();
 fetch("games.json",{cache:"no-cache"}).then(r=>r.ok?r.json():Promise.reject()).then(d=>{
   if(!d||!Array.isArray(d.games)) return;
-  if(typeof isAdmin!=="undefined"&&isAdmin)return;GAMES=d.games.map(norm);renderRack();if(curCat)openCat(curCat,true);
+  if(typeof isAdmin!=="undefined"&&isAdmin)return;applyData(d);renderRack();if(curCat)openCat(curCat,true);
 }).catch(()=>{});
 
 
@@ -523,7 +562,7 @@ function b64dec(c){const b=atob(c.replace(/\n/g,""));const u=new Uint8Array(b.le
 function b64enc(t){const u=new TextEncoder().encode(t);let b="";for(let i=0;i<u.length;i+=0x8000)b+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(b)}
 function ghMsg(st){if(st===401)return"Token salah atau sudah kedaluwarsa.";if(st===403)return"Token belum punya izin menulis (Contents: Read and write, atau centang public_repo untuk token klasik).";if(st===404)return"Repository tidak ditemukan atau token tidak diberi akses ke repository ini.";if(st===409||st===422)return"Terjadi bentrok dengan perubahan lain. Muat ulang halaman lalu coba lagi.";return"Tidak bisa tersambung ke GitHub. Periksa koneksi internet."}
 async function ghRead(){const r=await fetch(api(`contents/games.json?ref=${encodeURIComponent(gh.branch)}`),{headers:hdr(),cache:"no-store"});if(!r.ok)throw r.status;const j=await r.json();ghSha=j.sha;return JSON.parse(b64dec(j.content))}
-function snapshot(){return {diperbarui:new Date().toISOString().slice(0,10),games:GAMES.map(g=>({id:g.id,cat:g.cat,name:g.name,tujuan:g.tujuan,dur:g.dur,min:g.min,max:g.max,space:g.space,bahan:g.bahan,langkah:g.langkah,tips:g.tips,refleksi:g.refleksi,digital:g.digital,yt:g.yt,links:g.links}))}}
+function snapshot(){return {diperbarui:new Date().toISOString().slice(0,10),pengaturan:META,games:GAMES.map(g=>({id:g.id,cat:g.cat,name:g.name,tujuan:g.tujuan,dur:g.dur,min:g.min,max:g.max,space:g.space,bahan:g.bahan,langkah:g.langkah,tips:g.tips,refleksi:g.refleksi,digital:g.digital,yt:g.yt,links:g.links}))}}
 async function ghWrite(msg){
   const body={message:msg||"Perbarui data permainan",content:b64enc(JSON.stringify(snapshot(),null,1)),branch:gh.branch};if(ghSha)body.sha=ghSha;
   let r=await fetch(api("contents/games.json"),{method:"PUT",headers:hdr(),body:JSON.stringify(body)});
@@ -543,27 +582,114 @@ function publish(msg){
 $("retryBtn").onclick=()=>publish("Perbarui data permainan");
 function refreshViews(){renderRack();if(curCat)openCat(curCat,true);if(dlg.open&&current){const g=findGame(current.id);if(g)openGame(g.id);else dlg.close()}}
 function enterAdmin(){isAdmin=true;document.body.classList.add("is-admin");$("adminBtn").hidden=true;$("adminBar").hidden=false;setAdminStatus(`Mode admin aktif. <span class="muted">${adminSummary()}</span>`)}
-function exitAdmin(forget){isAdmin=false;document.body.classList.remove("is-admin");$("adminBtn").hidden=false;$("adminBar").hidden=true;
+function exitAdmin(forget){isAdmin=false;if(!views.dash.hidden)show("home");document.body.classList.remove("is-admin");$("adminBtn").hidden=false;$("adminBar").hidden=true;
   if(forget){gh.token="";try{localStorage.removeItem("km-gh");sessionStorage.removeItem("km-gh")}catch(e){}}}
 
-// ---- login
-const loginDlg=$("loginDlg");
-$("adminBtn").onclick=()=>{$("lgToken").value="";$("lgOwner").value=gh.owner;$("lgRepo").value=gh.repo;$("lgBranch").value=gh.branch;$("lgErr").textContent="";loginDlg.showModal();$("lgToken").focus()};
+// ---- login: kata sandi (token terenkripsi) atau token
+const b2u=b=>{let x="";const u=new Uint8Array(b);for(let i=0;i<u.length;i++)x+=String.fromCharCode(u[i]);return btoa(x)};
+const u2b=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
+async function pwKey(pw,salt,iter){const base=await crypto.subtle.importKey("raw",new TextEncoder().encode(pw),"PBKDF2",false,["deriveKey"]);
+  return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:iter,hash:"SHA-256"},base,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function lockToken(pw,obj){const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12)),iter=600000;
+  const key=await pwKey(pw,salt,iter);const ct=await crypto.subtle.encrypt({name:"AES-GCM",iv},key,new TextEncoder().encode(JSON.stringify(obj)));
+  return {v:1,iter,salt:b2u(salt),iv:b2u(iv),data:b2u(ct)}}
+async function unlockToken(pw,k){const key=await pwKey(pw,u2b(k.salt),k.iter||600000);const pt=await crypto.subtle.decrypt({name:"AES-GCM",iv:u2b(k.iv)},key,u2b(k.data));return JSON.parse(new TextDecoder().decode(pt))}
+const loginDlg=$("loginDlg");let lgMode="pw";
+function paintLogin(){
+  const hasPw=!!(META.kunci&&META.kunci.data);if(!hasPw)lgMode="token";
+  $("lgPwWrap").hidden=lgMode!=="pw";$("lgTokWrap").hidden=lgMode!=="token";$("lgAdv").hidden=lgMode!=="token";
+  $("lgIntro").textContent=lgMode==="pw"?"Ketik kata sandi admin Koper Games.":(hasPw?"Masuk memakai token GitHub.":"Kata sandi admin belum dibuat. Masuk sekali memakai token GitHub, lalu buat kata sandi di menu Pengaturan.");
+  $("lgSwitch").hidden=!hasPw;$("lgSwitch").textContent=lgMode==="pw"?"Masuk dengan token GitHub":"Masuk dengan kata sandi";
+  setTimeout(()=>(lgMode==="pw"?$("lgPw"):$("lgToken")).focus());
+}
+$("lgSwitch").onclick=()=>{lgMode=lgMode==="pw"?"token":"pw";$("lgErr").textContent="";paintLogin()};
+$("adminBtn").onclick=()=>{lgMode="pw";$("lgPw").value="";$("lgToken").value="";$("lgOwner").value=gh.owner;$("lgRepo").value=gh.repo;$("lgBranch").value=gh.branch;$("lgErr").textContent="";loginDlg.showModal();paintLogin()};
 $("lgCancel").onclick=()=>loginDlg.close();
+loginDlg.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.tagName==="INPUT"&&e.target.type!=="checkbox"){e.preventDefault();$("lgGo").click()}});
 $("lgGo").onclick=async()=>{
-  const t=$("lgToken").value.trim();if(!t){$("lgErr").textContent="Tempel kunci akses (token) GitHub.";return}
-  const prev=gh;gh={owner:$("lgOwner").value.trim()||prev.owner,repo:$("lgRepo").value.trim()||prev.repo,branch:$("lgBranch").value.trim()||"main",token:t};
-  $("lgErr").textContent="Memeriksa…";$("lgGo").disabled=true;
+  const prev=gh;$("lgGo").disabled=true;
   try{
+    if(lgMode==="pw"){
+      const pw=$("lgPw").value;if(!pw){$("lgErr").textContent="Ketik kata sandi admin.";return}
+      $("lgErr").textContent="Membuka kunci…";
+      let o;try{o=await unlockToken(pw,META.kunci)}catch(e){$("lgErr").textContent="Kata sandi salah.";return}
+      gh={owner:o.owner||prev.owner,repo:o.repo||prev.repo,branch:o.branch||"main",token:o.token};
+    }else{
+      const t=$("lgToken").value.trim();if(!t){$("lgErr").textContent="Tempel kunci akses (token) GitHub.";return}
+      gh={owner:$("lgOwner").value.trim()||prev.owner,repo:$("lgRepo").value.trim()||prev.repo,branch:$("lgBranch").value.trim()||"main",token:t};
+    }
+    $("lgErr").textContent="Memeriksa sambungan…";
     let fresh=null;try{fresh=await ghRead()}catch(st){if(st!==404)throw st;ghSha=null}
     if($("lgRemember").checked)store.set("km-gh",gh);else{try{sessionStorage.setItem("km-gh",JSON.stringify(gh))}catch(e){}}
-    if(fresh&&Array.isArray(fresh.games)){GAMES=fresh.games.map(norm)}
+    if(fresh&&Array.isArray(fresh.games))applyData(fresh);
     loginDlg.close();enterAdmin();refreshViews();checkDraft();
+    if(!(META.kunci&&META.kunci.data))setAdminStatus("Mode admin aktif. Buat kata sandi admin di <strong>Pengaturan</strong> supaya berikutnya tidak perlu token.");
   }catch(st){gh=prev;$("lgErr").textContent=ghMsg(typeof st==="number"?st:0)}
   finally{$("lgGo").disabled=false}
 };
+
+// ---- pengaturan: kata sandi & statistik
+const setDlg=$("setDlg");
+$("setBtn").onclick=()=>{$("sPw1").value="";$("sPw2").value="";$("sGc").value=META.goatcounter||"";$("sErr").textContent="";
+  $("sPwState").textContent=META.kunci&&META.kunci.data?"Kata sandi sudah dibuat. Isi kolom di atas hanya bila ingin menggantinya.":"Kata sandi belum dibuat.";setDlg.showModal()};
+$("setClose").onclick=()=>setDlg.close();
+$("sSave").onclick=async()=>{
+  const p1=$("sPw1").value,p2=$("sPw2").value,gc=$("sGc").value.trim().toLowerCase().replace(/^https?:\/\//,"").replace(/\.goatcounter\.com.*$/,"");
+  if(p1||p2){if(p1.length<12){$("sErr").textContent="Kata sandi minimal 12 karakter.";return}if(p1!==p2){$("sErr").textContent="Kedua kata sandi tidak sama.";return}}
+  if(gc&&!/^[a-z0-9-]{2,50}$/.test(gc)){$("sErr").textContent="Kode GoatCounter hanya boleh huruf kecil, angka, dan tanda hubung.";return}
+  $("sSave").disabled=true;$("sErr").textContent=p1?"Mengunci token…":"";
+  try{
+    const next={...META};if(gc)next.goatcounter=gc;else delete next.goatcounter;
+    if(p1)next.kunci=await lockToken(p1,{owner:gh.owner,repo:gh.repo,branch:gh.branch,token:gh.token});
+    META=next;setDlg.close();initStats();publish(p1?"Perbarui kata sandi admin":"Perbarui pengaturan statistik");
+  }catch(e){$("sErr").textContent="Gagal menyimpan pengaturan."}finally{$("sSave").disabled=false}
+};
+
+// ---- statistik (GoatCounter)
+let gcLoaded=false;
+function gcCode(){const c=String(META.goatcounter||"");return /^[a-z0-9-]{2,50}$/.test(c)?c:""}
+function initStats(){const c=gcCode();if(!c||gcLoaded)return;gcLoaded=true;
+  window.goatcounter={no_onload:false};const sc=document.createElement("script");sc.async=true;sc.src="https://gc.zgo.at/count.js";sc.dataset.goatcounter=`https://${c}.goatcounter.com/count`;document.head.appendChild(sc)}
+function track(path,title){try{if(!isAdmin&&window.goatcounter&&typeof window.goatcounter.count==="function")window.goatcounter.count({path,title,event:true})}catch(e){}}
+const __openCat=openCat;openCat=function(k,keep){__openCat(k,keep);if(!keep)track("koper-"+k,CATS[k].label)};
+const __openGame=openGame;openGame=function(id,...a){const was=dlg.open;__openGame(id,...a);const g=findGame(id);if(!was&&g)track("game-"+id,g.name)};
+async function gcCount(path){const c=gcCode();try{const r=await fetch(`https://${c}.goatcounter.com/counter/${encodeURIComponent(path)}.json`);if(!r.ok)return 0;const j=await r.json();
+  const n=v=>+String(v??"").replace(/[^\d]/g,"")||0;return {count:n(j.count),unique:n(j.count_unique)}}catch(e){return null}}
+async function pool(items,fn,n=6){const out=new Array(items.length);let i=0;await Promise.all(Array.from({length:n},async()=>{while(i<items.length){const k=i++;out[k]=await fn(items[k])}}));return out}
+views.dash=$("dash");
+$("dashBtn").onclick=()=>{show("dash");renderDash()};
+$("dashBack").onclick=()=>show("home");
+const bars=(rows,max)=>rows.map(r=>`<div class="hbar c-${r.cat}"><span class="nm" title="${esc(r.name)}">${esc(r.name)}</span><span class="track"><span class="fill" style="display:block;width:${max?r.v/max*100:0}%"></span></span><span class="v">${r.v.toLocaleString("id-ID")}</span></div>`).join("");
+async function renderDash(){
+  const c=gcCode(),note=$("dashNote");
+  const noVid=GAMES.filter(g=>!g.links.some(l=>ytId(l.url)));
+  const cc=Object.entries(CATS).map(([k,x])=>({cat:k,name:x.label,v:GAMES.filter(g=>g.cat===k).length}));
+  $("catCounts").innerHTML=bars(cc,Math.max(...cc.map(r=>r.v)));
+  $("noVideo").innerHTML=noVid.length?noVid.slice(0,12).map(g=>`<li class="c-${g.cat}"><span>${esc(g.name)}<span class="pill">${esc(CATS[g.cat].label)}</span></span></li>`).join("")+(noVid.length>12?`<li class="who">dan ${noVid.length-12} permainan lainnya</li>`:""):`<li class="hint">Semua permainan sudah punya video.</li>`;
+  const tile=(v,l)=>`<div class="tile"><b>${v}</b><span>${l}</span></div>`;
+  const base=tile(GAMES.length,"Permainan di perpustakaan")+tile(noVid.length,"Belum ada video YouTube");
+  if(!c){
+    note.hidden=false;note.innerHTML="Statistik pengunjung belum aktif. Buat akun gratis di <a href='https://www.goatcounter.com/signup' target='_blank' rel='noopener'>goatcounter.com</a>, lalu masukkan kodenya di <strong>Pengaturan</strong>. Di pengaturan GoatCounter, aktifkan juga pilihan untuk menampilkan jumlah pengunjung di website (visitor counts).";
+    $("tiles").innerHTML=base;$("topCats").innerHTML=$("topGames").innerHTML=`<p class="hint">Menunggu statistik diaktifkan.</p>`;$("gcLinkWrap").hidden=true;return;
+  }
+  note.hidden=true;$("gcLinkWrap").hidden=false;$("gcLink").href=`https://${c}.goatcounter.com`;
+  $("tiles").innerHTML=tile("…","Pengunjung unik")+tile("…","Kunjungan halaman")+base;
+  $("topCats").innerHTML=$("topGames").innerHTML=`<p class="hint">Memuat…</p>`;
+  const tot=await gcCount("TOTAL");
+  if(tot===null){note.hidden=false;note.textContent="Angka pengunjung belum bisa diambil. Pastikan kode GoatCounter benar dan pilihan visitor counts sudah diaktifkan di pengaturan GoatCounter.";}
+  const t=tot||{count:0,unique:0};
+  $("tiles").innerHTML=tile((t.unique||t.count).toLocaleString("id-ID"),"Pengunjung unik")+tile(t.count.toLocaleString("id-ID"),"Kunjungan halaman")+base;
+  const cats=Object.keys(CATS);const cv=await pool(cats,k=>gcCount("koper-"+k));
+  const cr=cats.map((k,i)=>({cat:k,name:CATS[k].label,v:(cv[i]&&cv[i].count)||0})).sort((a,b)=>b.v-a.v);
+  $("topCats").innerHTML=cr.some(r=>r.v)?bars(cr,cr[0].v):`<p class="hint">Belum ada koper yang dibuka pengunjung.</p>`;
+  const gv=await pool(GAMES,g=>gcCount("game-"+g.id));
+  const gr=GAMES.map((g,i)=>({cat:g.cat,name:g.name,v:(gv[i]&&gv[i].count)||0})).filter(r=>r.v).sort((a,b)=>b.v-a.v).slice(0,8);
+  $("topGames").innerHTML=gr.length?bars(gr,gr[0].v):`<p class="hint">Belum ada permainan yang dibuka pengunjung.</p>`;
+}
+initStats();
+
 $("logoutBtn").onclick=()=>{if(confirm("Keluar dari mode admin dan hapus token dari perangkat ini?"))exitAdmin(true)};
-function checkDraft(){const d=store.get("km-admin-draft",null);if(d&&Array.isArray(d.games)&&confirm("Ada perubahan admin yang belum sempat terbit. Terbitkan sekarang?")){GAMES=d.games.map(norm);refreshViews();publish("Terbitkan perubahan yang tertunda")}}
+function checkDraft(){const d=store.get("km-admin-draft",null);if(d&&Array.isArray(d.games)&&confirm("Ada perubahan admin yang belum sempat terbit. Terbitkan sekarang?")){applyData(d);refreshViews();publish("Terbitkan perubahan yang tertunda")}}
 
 // ---- tombol admin di koper & dialog
 $("addBtn").onclick=()=>openForm(null,curCat);
@@ -614,7 +740,7 @@ $("fSave").onclick=()=>{
 };
 
 // ---- otomatis masuk bila token tersimpan
-if(gh.token){(async()=>{try{const fresh=await ghRead();if(fresh&&Array.isArray(fresh.games))GAMES=fresh.games.map(norm);enterAdmin();refreshViews();checkDraft()}catch(e){}})()}
+if(gh.token){(async()=>{try{const fresh=await ghRead();if(fresh&&Array.isArray(fresh.games))applyData(fresh);enterAdmin();refreshViews();checkDraft()}catch(e){}})()}
 window.addEventListener("beforeunload",e=>{if(isAdmin&&(pubPending||$("adminStatus").classList.contains("busy"))){e.preventDefault();e.returnValue=""}});
 
 </script>
