@@ -222,6 +222,27 @@ body.is-admin #dlgStage{padding:9px 14px}
 .vempty{padding:28px 16px;color:var(--muted);text-align:center}
 .vplayer{position:relative;aspect-ratio:16/9;background:#000}
 .vplayer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* ---- ulasan ---- */
+.reviews{max-width:1000px;margin:8px auto 40px;background:var(--panel);border:1.5px solid var(--line);border-radius:22px;padding:22px 24px;display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:720px){.reviews{grid-template-columns:1fr}}
+.rv-score{text-align:center;border-right:1.5px dashed var(--line);padding-right:18px}
+@media (max-width:720px){.rv-score{border-right:0;border-bottom:1.5px dashed var(--line);padding:0 0 16px}}
+.rv-score .big{font-family:var(--display);font-weight:800;font-size:3.2rem;line-height:1}
+.rv-score .of{color:var(--muted);font-size:.9rem;margin:6px 0 14px}
+.stars{color:#F2A900;letter-spacing:2px;font-size:1.25rem;line-height:1}
+.stars .off{color:var(--line)}
+.rv-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.rv-head h2{font-family:var(--display);font-weight:800;font-size:1.4rem;margin:0}
+.rv-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.rv-card{border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;background:var(--bg)}
+.rv-card p{margin:6px 0 8px;font-size:.95rem}
+.rv-card .who{color:var(--muted);font-size:.85rem}
+.rv-empty{color:var(--muted);margin:0}
+.starpick{display:flex;gap:4px;justify-content:center;margin:4px 0 2px}
+.starpick button{background:none;border:0;font-size:2.4rem;line-height:1;color:var(--line);padding:2px 4px}
+.starpick button.on{color:#F2A900}
+.starhint{text-align:center;color:var(--muted);margin:0 0 6px;min-height:1.4em}
 /* dashboard */
 .dash{padding:20px 0 72px}
 .dash h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.6rem);margin:6px 0 4px}
@@ -300,6 +321,11 @@ body.is-admin #dlgStage{padding:9px 14px}
 <main class="wrap">
   <section id="home"><div class="rack" id="rack"></div>
     <div class="tvwrap"><button class="tv" id="tvBtn" aria-label="Buka video senam dan peregangan"><span class="badge" id="tvCount">0 video</span><span class="screen"><span class="play" aria-hidden="true"></span><span><h2>Video Senam &amp; Peregangan</h2><p>Kumpulan video yang biasa kami pakai untuk menyegarkan peserta di sela pelatihan.</p></span></span><span class="knobs" aria-hidden="true"><span class="knob"></span><span class="knob"></span><span class="grill"></span></span></button></div>
+    <section class="reviews" id="reviews" hidden aria-labelledby="rvTitle">
+      <div class="rv-score"><div class="big" id="rvAvg">–</div><div class="stars" id="rvStars" aria-hidden="true"></div><div class="of" id="rvOf">Belum ada ulasan</div>
+        <button class="btn" id="rvBtn">Beri ulasan</button></div>
+      <div><div class="rv-head"><h2 id="rvTitle">Kata Fasilitator</h2></div><div class="rv-list" id="rvList"></div></div>
+    </section>
     <p class="shelf-note">Setiap permainan dilengkapi panduan, mode proyektor, dan timer.</p></section>
 
   <section id="cat" class="opened" hidden>
@@ -331,7 +357,6 @@ body.is-admin #dlgStage{padding:9px 14px}
       <div class="panel"><h3>Permainan paling sering dibuka</h3><div id="topGames"></div></div>
       <div class="panel"><h3>Video paling sering diputar</h3><div id="topVideos"></div></div>
       <div class="panel"><h3>Isi tiap koper</h3><div id="catCounts"></div></div>
-      <div class="panel" id="noVidPanel"><h3>Permainan belum ada video</h3><ul class="recent" id="noVideo"></ul></div>
     </div>
     <p style="margin-top:18px" id="gcLinkWrap" hidden><a class="btn" id="gcLink" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">Lihat statistik lengkap: grafik harian, perangkat, asal kunjungan</a></p>
   </section>
@@ -383,9 +408,26 @@ body.is-admin #dlgStage{padding:9px 14px}
     <h4 style="margin:8px 0 0">Statistik pengunjung (GoatCounter)</h4>
     <p class="hint" style="margin:0">Isi kode situs GoatCounter, misalnya <code>kopergame-bapelkes</code> dari alamat <code>kopergame-bapelkes.goatcounter.com</code>. Kosongkan untuk mematikan statistik.</p>
     <label>Kode GoatCounter<input id="sGc" maxlength="50" placeholder="kopergame-bapelkes"></label>
+    <h4 style="margin:8px 0 0">Ulasan &amp; rating (Google Form)</h4>
+    <p class="hint" style="margin:0">Tempel dua link dari Google Form. Kosongkan keduanya untuk menyembunyikan bagian ulasan.</p>
+    <label>Link isian otomatis (pre-filled link) <small>Saat membuat link, isi Nama = NAMA, Instansi = INSTANSI, Rating = 5, Ulasan = ULASAN.</small><input id="sRvForm" placeholder="https://docs.google.com/forms/d/e/.../viewform?usp=pp_url&entry...."></label>
+    <label>Link CSV hasil publikasi Google Sheet <small>File → Bagikan → Publikasikan ke web → pilih sheet jawaban → CSV.</small><input id="sRvCsv" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv"></label>
     <p class="err" id="sErr" aria-live="polite"></p>
   </div></div>
   <div class="dlg-actions"><button class="btn" id="sSave">Simpan &amp; terbitkan</button></div>
+</dialog>
+
+<dialog id="rvDlg" aria-labelledby="rvdTitle" class="c-tim">
+  <div class="dlg-lid"><div class="inner"><h2 id="rvdTitle">Beri ulasan</h2><div class="meta">Tidak wajib. Satu menit saja untuk membantu kami memperbaiki Koper Games.</div></div>
+    <button class="close" id="rvdClose" aria-label="Tutup">×</button></div>
+  <div class="dlg-body" style="min-height:0"><div class="form" id="rvForm">
+    <div><div class="starpick" id="rvPick" role="radiogroup" aria-label="Rating bintang"></div><p class="starhint" id="rvHint">Ketuk bintang</p></div>
+    <label>Kesan atau saran <small>opsional</small><textarea id="rvText" maxlength="500" style="min-height:80px" placeholder="Permainan apa yang paling membantu di kelas Anda?"></textarea></label>
+    <div class="two"><label>Nama <small>opsional</small><input id="rvName" maxlength="60"></label><label>Instansi <small>opsional</small><input id="rvInst" maxlength="80"></label></div>
+    <p class="hint" style="margin:0">Ulasan bisa ditampilkan di halaman ini setelah diperiksa admin.</p>
+    <p class="err" id="rvErr" aria-live="polite"></p>
+  </div><div id="rvDone" hidden style="text-align:center;padding:20px 0"><div class="stars" style="font-size:2rem">★★★★★</div><h3 style="font-family:var(--display);margin:10px 0 4px">Terima kasih!</h3><p class="hint" style="margin:0">Ulasan Anda sudah terkirim.</p></div></div>
+  <div class="dlg-actions"><button class="btn" id="rvSend">Kirim ulasan</button></div>
 </dialog>
 
 <dialog id="vDlg" aria-labelledby="vTitle" class="c-video">
@@ -491,7 +533,7 @@ const KOLEKSI_BARU=[{"id": "nama-sifat", "cat": "kenal", "name": "Nama dan Kata 
 let META={};
 let VIDEOS=[];
 function normVideo(v){return {id:String(v.id||("v-"+Math.random().toString(36).slice(2,8))),name:String(v.name||"Video"),url:String(v.url||""),tag:String(v.tag||"Lainnya"),dur:+v.dur||0,note:String(v.note||"")}}
-function applyData(d){GAMES=d.games.map(norm);VIDEOS=(Array.isArray(d.videos)?d.videos:[]).map(normVideo).filter(v=>ytId(v.url));if(typeof renderTv==="function")renderTv();META=(d.pengaturan&&typeof d.pengaturan==="object")?d.pengaturan:{};if(typeof initStats==="function")initStats()}
+function applyData(d){GAMES=d.games.map(norm);VIDEOS=(Array.isArray(d.videos)?d.videos:[]).map(normVideo).filter(v=>ytId(v.url));if(typeof renderTv==="function")renderTv();if(typeof loadUlasan==="function")loadUlasan();META=(d.pengaturan&&typeof d.pengaturan==="object")?d.pengaturan:{};if(typeof initStats==="function")initStats()}
 const findGame=id=>GAMES.find(g=>g.id===id);
 
 // ---- views
@@ -664,6 +706,63 @@ document.getElementById("vFull").onclick=()=>{const f=document.querySelector("#v
 document.getElementById("vRandom").onclick=()=>{const l=VIDEOS.filter(v=>!vFilter||v.tag===vFilter);if(l.length)openVideo(l[Math.floor(Math.random()*l.length)].id)};
 renderTv();
 
+
+// ================= ULASAN & RATING =================
+let RV={n:0,avg:0,rows:[]};
+function parsePrefill(u){
+  try{const url=new URL(u);const m=url.pathname.match(/\/forms\/d\/e\/([^/]+)\//);if(!m)return null;
+    const e={};url.searchParams.forEach((v,k)=>{if(!k.startsWith("entry."))return;const t=v.trim().toUpperCase();
+      if(t==="NAMA")e.nama=k;else if(t==="INSTANSI")e.instansi=k;else if(t==="ULASAN")e.ulasan=k;else if(/^[1-5]$/.test(t))e.rating=k});
+    if(!e.rating||!e.ulasan)return null;return {action:`https://docs.google.com/forms/d/e/${m[1]}/formResponse`,entries:e}}catch(x){return null}}
+function parseCSV(t){const rows=[];let r=[],f="",q=false;for(let i=0;i<t.length;i++){const c=t[i];
+  if(q){if(c==='"'){if(t[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+  else if(c==='"')q=true;else if(c===","){r.push(f);f=""}else if(c==="\n"||c==="\r"){if(c==="\r"&&t[i+1]==="\n")i++;r.push(f);rows.push(r);r=[];f=""}else f+=c}
+  if(f||r.length){r.push(f);rows.push(r)}return rows}
+const starsHtml=n=>{const r=Math.round(n);return "★".repeat(r)+`<span class="off">${"★".repeat(5-r)}</span>`};
+async function loadUlasan(force){
+  const cfg=META.ulasan,box=document.getElementById("reviews");
+  if(!cfg||!cfg.csv){box.hidden=true;RV={n:0,avg:0,rows:[]};return}
+  box.hidden=false;
+  try{
+    const r=await fetch(cfg.csv+(force?(cfg.csv.includes("?")?"&":"?")+"t="+Date.now():""),{cache:"no-store"});if(!r.ok)throw 0;
+    const rows=parseCSV(await r.text()).filter(x=>x.some(v=>v.trim()));if(!rows.length)throw 0;
+    const h=rows[0].map(x=>x.toLowerCase()),col=re=>h.findIndex(x=>re.test(x));
+    const iN=col(/nama/),iI=col(/instansi|asal|unit/),iR=col(/bintang|rating|nilai|skor/),iU=col(/ulasan|testimoni|kesan|saran|pesan/),iS=col(/tampil/),iT=0;
+    const data=rows.slice(1).map(x=>({t:x[iT]||"",nama:iN>=0?x[iN].trim():"",inst:iI>=0?x[iI].trim():"",r:iR>=0?parseInt(x[iR],10):NaN,u:iU>=0?x[iU].trim():"",show:iS>=0&&/^(ya|y|yes|1|true|tampil)/i.test((x[iS]||"").trim())}));
+    const rated=data.filter(d=>d.r>=1&&d.r<=5);
+    RV={n:rated.length,avg:rated.length?rated.reduce((a,d)=>a+d.r,0)/rated.length:0,rows:data.filter(d=>d.show&&d.u).reverse().slice(0,6)};
+  }catch(e){RV={n:0,avg:0,rows:[]}}
+  renderUlasan();
+}
+function renderUlasan(){
+  document.getElementById("rvAvg").textContent=RV.n?RV.avg.toFixed(1).replace(".",","):"–";
+  document.getElementById("rvStars").innerHTML=starsHtml(RV.avg);
+  document.getElementById("rvOf").textContent=RV.n?`dari ${RV.n} ulasan`:"Belum ada ulasan";
+  document.getElementById("rvList").innerHTML=RV.rows.length?RV.rows.map(d=>`<div class="rv-card"><div class="stars" style="font-size:1rem">${d.r>=1?starsHtml(d.r):""}</div><p>${esc(d.u)}</p><div class="who">${esc(d.nama||"Fasilitator")}${d.inst?" · "+esc(d.inst):""}</div></div>`).join("")
+    :`<p class="rv-empty">Jadilah yang pertama memberi ulasan tentang Koper Games.</p>`;
+}
+// formulir ulasan
+const rvDlg=document.getElementById("rvDlg");let rvStar=0;
+const RV_LABEL=["","Kurang membantu","Cukup membantu","Membantu","Sangat membantu","Luar biasa!"];
+function paintPick(){document.querySelectorAll("#rvPick button").forEach((b,i)=>{b.classList.toggle("on",i<rvStar);b.setAttribute("aria-checked",String(i+1===rvStar))});document.getElementById("rvHint").textContent=rvStar?RV_LABEL[rvStar]:"Ketuk bintang"}
+document.getElementById("rvPick").innerHTML=[1,2,3,4,5].map(n=>`<button type="button" role="radio" aria-label="${n} bintang" data-n="${n}">★</button>`).join("");
+document.querySelectorAll("#rvPick button").forEach(b=>b.onclick=()=>{rvStar=+b.dataset.n;paintPick()});
+document.getElementById("rvBtn").onclick=()=>{rvStar=0;paintPick();["rvText","rvName","rvInst"].forEach(id=>document.getElementById(id).value="");document.getElementById("rvErr").textContent="";
+  document.getElementById("rvForm").hidden=false;document.getElementById("rvDone").hidden=true;document.getElementById("rvSend").hidden=false;rvDlg.showModal()};
+document.getElementById("rvdClose").onclick=()=>rvDlg.close();
+document.getElementById("rvSend").onclick=async()=>{
+  const cfg=META.ulasan,err=document.getElementById("rvErr");if(!cfg||!cfg.action){err.textContent="Fitur ulasan belum diaktifkan admin.";return}
+  if(!rvStar){err.textContent="Pilih jumlah bintang terlebih dahulu.";return}
+  const fd=new URLSearchParams();fd.append(cfg.entries.rating,String(rvStar));fd.append(cfg.entries.ulasan,document.getElementById("rvText").value.trim());
+  if(cfg.entries.nama)fd.append(cfg.entries.nama,document.getElementById("rvName").value.trim());
+  if(cfg.entries.instansi)fd.append(cfg.entries.instansi,document.getElementById("rvInst").value.trim());
+  const btn=document.getElementById("rvSend");btn.disabled=true;err.textContent="Mengirim…";
+  try{await fetch(cfg.action,{method:"POST",mode:"no-cors",body:fd});
+    document.getElementById("rvForm").hidden=true;document.getElementById("rvDone").hidden=false;btn.hidden=true;err.textContent="";
+    if(typeof track==="function")track("ulasan-terkirim","Ulasan terkirim");
+  }catch(e){err.textContent="Ulasan belum terkirim. Periksa koneksi internet lalu coba lagi."}finally{btn.disabled=false}
+};
+
 // =====================================================================
 // MODE ADMIN — edit langsung di halaman ini, terbit ke GitHub
 // =====================================================================
@@ -686,7 +785,7 @@ async function ghWrite(msg){
   if(!r.ok)throw r.status;const j=await r.json();ghSha=j.content&&j.content.sha;
 }
 function setAdminStatus(html,cls){const el=$("adminStatus");el.innerHTML=html;el.className="astatus"+(cls?" "+cls:"")}
-function adminSummary(){const noVid=GAMES.filter(g=>!g.links.some(l=>ytId(l.url))).length;return `${GAMES.length} permainan · ${noVid} belum ada video`}
+function adminSummary(){return `${GAMES.length} permainan · ${VIDEOS.length} video`}
 function publish(msg){
   store.set("km-admin-draft",snapshot());pubPending=true;
   setAdminStatus("Menerbitkan perubahan…","busy");$("retryBtn").hidden=true;
@@ -746,18 +845,24 @@ $("lgGo").onclick=async()=>{
 
 // ---- pengaturan: kata sandi & statistik
 const setDlg=$("setDlg");
-$("setBtn").onclick=()=>{$("sPw1").value="";$("sPw2").value="";$("sGc").value=META.goatcounter||"";$("sErr").textContent="";
+$("setBtn").onclick=()=>{$("sPw1").value="";$("sPw2").value="";$("sGc").value=META.goatcounter||"";$("sRvForm").value=(META.ulasan&&META.ulasan.prefill)||"";$("sRvCsv").value=(META.ulasan&&META.ulasan.csv)||"";$("sErr").textContent="";
   $("sPwState").textContent=META.kunci&&META.kunci.data?"Kata sandi sudah dibuat. Isi kolom di atas hanya bila ingin menggantinya.":"Kata sandi belum dibuat.";setDlg.showModal()};
 $("setClose").onclick=()=>setDlg.close();
 $("sSave").onclick=async()=>{
   const p1=$("sPw1").value,p2=$("sPw2").value,gc=$("sGc").value.trim().toLowerCase().replace(/^https?:\/\//,"").replace(/\.goatcounter\.com.*$/,"");
   if(p1||p2){if(p1.length<12){$("sErr").textContent="Kata sandi minimal 12 karakter.";return}if(p1!==p2){$("sErr").textContent="Kedua kata sandi tidak sama.";return}}
   if(gc&&!/^[a-z0-9-]{2,50}$/.test(gc)){$("sErr").textContent="Kode GoatCounter hanya boleh huruf kecil, angka, dan tanda hubung.";return}
+  const rvPre=$("sRvForm").value.trim(),rvCsv=$("sRvCsv").value.trim();let rv=null;
+  if(rvPre||rvCsv){
+    rv=parsePrefill(rvPre);if(!rv){$("sErr").textContent="Link isian otomatis belum dikenali. Pastikan Nama, Instansi, Rating, dan Ulasan diisi NAMA, INSTANSI, 5, ULASAN saat membuat link.";return}
+    if(!/^https:\/\/docs\.google\.com\/spreadsheets\/.+(output=csv|format=csv)/.test(rvCsv)){$("sErr").textContent="Link CSV harus berasal dari Google Sheet yang dipublikasikan dalam format CSV.";return}
+    rv.csv=rvCsv;rv.prefill=rvPre;
+  }
   $("sSave").disabled=true;$("sErr").textContent=p1?"Mengunci token…":"";
   try{
-    const next={...META};if(gc)next.goatcounter=gc;else delete next.goatcounter;
+    const next={...META};if(gc)next.goatcounter=gc;else delete next.goatcounter;if(rv)next.ulasan=rv;else delete next.ulasan;
     if(p1)next.kunci=await lockToken(p1,{owner:gh.owner,repo:gh.repo,branch:gh.branch,token:gh.token});
-    META=next;setDlg.close();initStats();publish(p1?"Perbarui kata sandi admin":"Perbarui pengaturan statistik");
+    META=next;setDlg.close();initStats();loadUlasan(true);publish(p1?"Perbarui kata sandi admin":"Perbarui pengaturan");
   }catch(e){$("sErr").textContent="Gagal menyimpan pengaturan."}finally{$("sSave").disabled=false}
 };
 
@@ -765,7 +870,15 @@ $("sSave").onclick=async()=>{
 let gcLoaded=false;
 function gcCode(){const c=String(META.goatcounter||"");return /^[a-z0-9-]{2,50}$/.test(c)?c:""}
 function initStats(){const c=gcCode();if(!c||gcLoaded)return;gcLoaded=true;
-  window.goatcounter={no_onload:false};const sc=document.createElement("script");sc.async=true;sc.src="https://gc.zgo.at/count.js";sc.dataset.goatcounter=`https://${c}.goatcounter.com/count`;document.head.appendChild(sc)}
+  window.goatcounter={no_onload:false};const sc=document.createElement("script");sc.async=true;sc.src="https://gc.zgo.at/count.js";sc.dataset.goatcounter=`https://${c}.goatcounter.com/count`;
+  sc.onload=()=>setTimeout(countVisit,300);document.head.appendChild(sc)}
+// pengunjung berbeda: sekali per perangkat/browser; kunjungan: sekali per sesi browser
+function countVisit(){
+  if(isAdmin||(gh&&gh.token))return;
+  let seen=false,inSession=false;try{seen=!!localStorage.getItem("km-seen");inSession=!!sessionStorage.getItem("km-visit")}catch(e){}
+  if(!seen){track("pengunjung-baru","Pengunjung baru");try{localStorage.setItem("km-seen",new Date().toISOString())}catch(e){}}
+  if(!inSession){track("kunjungan","Kunjungan");try{sessionStorage.setItem("km-visit","1")}catch(e){}}
+}
 function track(path,title){try{if(!isAdmin&&window.goatcounter&&typeof window.goatcounter.count==="function")window.goatcounter.count({path,title,event:true})}catch(e){}}
 const __openCat=openCat;openCat=function(k,keep){__openCat(k,keep);if(!keep)track("koper-"+k,CATS[k].label)};
 const __openGame=openGame;openGame=function(id,...a){const was=dlg.open;__openGame(id,...a);const g=findGame(id);if(!was&&g)track("game-"+id,g.name)};
@@ -781,22 +894,23 @@ async function renderDash(){
   const noVid=GAMES.filter(g=>!g.links.some(l=>ytId(l.url)));
   const cc=Object.entries(CATS).map(([k,x])=>({cat:k,name:x.label,v:GAMES.filter(g=>g.cat===k).length}));
   $("catCounts").innerHTML=bars(cc,Math.max(...cc.map(r=>r.v)));
-  $("noVideo").innerHTML=noVid.length?noVid.slice(0,12).map(g=>`<li class="c-${g.cat}"><span>${esc(g.name)}<span class="pill">${esc(CATS[g.cat].label)}</span></span></li>`).join("")+(noVid.length>12?`<li class="who">dan ${noVid.length-12} permainan lainnya</li>`:""):`<li class="hint">Semua permainan sudah punya video.</li>`;
   const tile=(v,l)=>`<div class="tile"><b>${v}</b><span>${l}</span></div>`;
-  $("noVidPanel").hidden=!isAdmin;
-  const base=tile(GAMES.length,"Permainan di perpustakaan")+tile(VIDEOS.length,"Video senam & peregangan")+(isAdmin?tile(noVid.length,"Belum ada video YouTube"):tile(Object.keys(CATS).length,"Koper"));
+  const base=tile(GAMES.length,"Permainan di perpustakaan")+tile(VIDEOS.length,"Video senam & peregangan")+tile(Object.keys(CATS).length,"Koper permainan");
   if(!c){
     note.hidden=false;if(!isAdmin){note.textContent="Statistik pengunjung akan tampil di sini setelah diaktifkan oleh admin.";$("tiles").innerHTML=base;$("topCats").innerHTML=$("topGames").innerHTML=$("topVideos").innerHTML=`<p class="hint">Belum ada data.</p>`;$("gcLinkWrap").hidden=true;return}
     note.innerHTML="Statistik pengunjung belum aktif. Buat akun gratis di <a href='https://www.goatcounter.com/signup' target='_blank' rel='noopener'>goatcounter.com</a>, lalu masukkan kodenya di <strong>Pengaturan</strong>. Di pengaturan GoatCounter, aktifkan juga pilihan untuk menampilkan jumlah pengunjung di website (visitor counts).";
     $("tiles").innerHTML=base;$("topCats").innerHTML=$("topGames").innerHTML=$("topVideos").innerHTML=`<p class="hint">Menunggu statistik diaktifkan.</p>`;$("gcLinkWrap").hidden=true;return;
   }
   note.hidden=true;$("gcLinkWrap").hidden=!isAdmin;$("gcLink").href=`https://${c}.goatcounter.com`;
-  $("tiles").innerHTML=tile("…","Pengunjung unik")+tile("…","Kunjungan halaman")+base;
+  $("tiles").innerHTML=tile("…","Pengunjung berbeda")+tile("…","Total kunjungan")+tile("…","Kunjungan ulang")+base;
   $("topCats").innerHTML=$("topGames").innerHTML=$("topVideos").innerHTML=`<p class="hint">Memuat…</p>`;
   const tot=await gcCount("TOTAL");
   if(tot===null){note.hidden=false;note.textContent="Angka pengunjung belum bisa diambil. Pastikan kode GoatCounter benar dan pilihan visitor counts sudah diaktifkan di pengaturan GoatCounter.";}
   const t=tot||{count:0,unique:0};
-  $("tiles").innerHTML=tile((t.unique||t.count).toLocaleString("id-ID"),"Pengunjung unik")+tile(t.count.toLocaleString("id-ID"),"Kunjungan halaman")+base;
+  const [nb,kj]=await Promise.all([gcCount("pengunjung-baru"),gcCount("kunjungan")]);
+  const beda=(nb&&nb.count)||0,total=Math.max((kj&&kj.count)||0,beda),ulang=Math.max(0,total-beda),fmtN=n=>n.toLocaleString("id-ID");
+  $("tiles").innerHTML=tile(fmtN(beda),"Pengunjung berbeda")+tile(fmtN(total),"Total kunjungan")+tile(fmtN(ulang),"Kunjungan ulang")+(RV.n?tile(RV.avg.toFixed(1).replace(".",",")+" ★",`Rating dari ${RV.n} ulasan`):"")+base;
+  if(!total&&(t.count||t.unique)){note.hidden=false;note.textContent=`Pemisahan pengunjung berbeda dan kunjungan ulang dihitung sejak pembaruan ini. Sebelumnya tercatat ${fmtN(Math.max(t.count,t.unique))} pengunjung.`}
   const cats=Object.keys(CATS);const cv=await pool(cats,k=>gcCount("koper-"+k));
   const cr=cats.map((k,i)=>({cat:k,name:CATS[k].label,v:(cv[i]&&cv[i].count)||0})).sort((a,b)=>b.v-a.v);
   $("topCats").innerHTML=cr.some(r=>r.v)?bars(cr,cr[0].v):`<p class="hint">Belum ada koper yang dibuka pengunjung.</p>`;
