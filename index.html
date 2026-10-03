@@ -243,6 +243,37 @@ body.is-admin #dlgStage{padding:9px 14px}
 .starpick button{background:none;border:0;font-size:2.4rem;line-height:1;color:var(--line);padding:2px 4px}
 .starpick button.on{color:#F2A900}
 .starhint{text-align:center;color:var(--muted);margin:0 0 6px;min-height:1.4em}
+
+/* ---- kotak perkakas (alat bantu daring) ---- */
+.extras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;align-items:end;padding:6px 0 30px}
+@media (max-width:860px){.extras{grid-template-columns:1fr}}
+.extras .tvwrap{padding:0}
+.extras .tv{width:100%}
+.toolbox{position:relative;width:100%;border:0;margin-top:34px;padding:0;background:none;text-align:left;color:#fff}
+.toolbox::before{content:"";position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:150px;height:36px;border:9px solid #8E2F27;border-bottom:0;border-radius:18px 18px 0 0}
+.toolbox .lidtb{display:block;background:#C8443A;border-radius:18px 18px 6px 6px;height:34px;box-shadow:inset 0 -6px 0 rgba(0,0,0,.18)}
+.toolbox .bodytb{display:flex;gap:16px;align-items:center;background:#D9513F;border-radius:6px 6px 22px 22px;margin-top:4px;padding:22px 24px;min-height:150px;box-shadow:inset 0 -10px 0 rgba(0,0,0,.18),0 22px 18px -14px rgba(0,0,0,.3)}
+.toolbox .latchtb{position:absolute;top:26px;width:34px;height:18px;border-radius:5px;background:#E9E3D8;box-shadow:inset 0 -3px 0 rgba(0,0,0,.2)}
+.toolbox .latchtb.l{left:16%}.toolbox .latchtb.r{right:16%}
+.toolbox .icon{flex:none;width:64px;height:64px;border-radius:16px;background:#fff;display:grid;place-items:center;font-size:2rem}
+.toolbox h2{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,3vw,1.8rem);line-height:1.1;margin:0 0 6px}
+.toolbox p{margin:0;opacity:.9;font-size:.95rem}
+.toolbox .badge{position:absolute;right:18px;top:44px;background:var(--panel);color:var(--ink);font-family:var(--display);font-weight:700;font-size:.85rem;padding:3px 10px;border-radius:999px}
+@media (hover:hover) and (prefers-reduced-motion:no-preference){.toolbox{transition:transform .18s ease}.toolbox:hover{transform:translateY(-3px)}}
+@media (max-width:560px){.toolbox .badge{top:6px;right:14px}.toolbox .bodytb{flex-direction:column;align-items:flex-start}}
+.c-alat{--c:#C8443A}
+.tsec{padding:14px 6px 6px}
+.tsec h3{font-family:var(--display);font-size:1.2rem;margin:4px 0 10px;display:flex;gap:10px;align-items:center}
+.tsec h3 .num{width:28px;height:28px;border-radius:50%;background:#C8443A;color:#fff;display:grid;place-items:center;font-size:.9rem}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-bottom:12px}
+.tcard{position:relative;display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);background:var(--bg);border-radius:14px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.tcard:hover{border-color:#C8443A}
+.tcard .ini{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-family:var(--display);font-weight:800;color:#fff;background:var(--tc,#C8443A)}
+.tcard h4{margin:0 0 2px;font-family:var(--display);font-size:1.05rem}
+.tcard p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.4}
+.tcard .go{position:absolute;right:12px;top:10px;color:var(--muted);font-size:.85rem}
+.tedit{margin-top:6px;border:1.5px solid var(--line);background:var(--panel);border-radius:8px;padding:3px 10px;font-weight:700;font-size:.82rem}
+.tnote{color:var(--muted);font-size:.9rem;padding:4px 6px 10px}
 /* dashboard */
 .dash{padding:20px 0 72px}
 .dash h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,4.5vw,2.6rem);margin:6px 0 4px}
@@ -320,7 +351,10 @@ body.is-admin #dlgStage{padding:9px 14px}
 
 <main class="wrap">
   <section id="home"><div class="rack" id="rack"></div>
+    <div class="extras">
     <div class="tvwrap"><button class="tv" id="tvBtn" aria-label="Buka video senam dan peregangan"><span class="badge" id="tvCount">0 video</span><span class="screen"><span class="play" aria-hidden="true"></span><span><h2>Video Senam &amp; Peregangan</h2><p>Kumpulan video yang biasa kami pakai untuk menyegarkan peserta di sela pelatihan.</p></span></span><span class="knobs" aria-hidden="true"><span class="knob"></span><span class="knob"></span><span class="grill"></span></span></button></div>
+    <button class="toolbox" id="tbBtn" aria-label="Buka alat bantu daring"><span class="latchtb l" aria-hidden="true"></span><span class="latchtb r" aria-hidden="true"></span><span class="lidtb" aria-hidden="true"></span><span class="badge" id="tbCount">0 alat</span><span class="bodytb"><span class="icon" aria-hidden="true">🧰</span><span><h2>Alat Bantu Daring</h2><p>Kahoot, Mentimeter, Wheel of Names, Padlet, tebak gambar, dan lainnya dalam satu tempat.</p></span></span></button>
+    </div>
     <section class="reviews" id="reviews" hidden aria-labelledby="rvTitle">
       <div class="rv-score"><div class="big" id="rvAvg">–</div><div class="stars" id="rvStars" aria-hidden="true"></div><div class="of" id="rvOf">Belum ada ulasan</div>
         <button class="btn" id="rvBtn">Beri ulasan</button></div>
@@ -344,6 +378,16 @@ body.is-admin #dlgStage{padding:9px 14px}
       <div class="actions"><button class="btn admin-only" id="vAddBtn">+ Tambah video</button><button class="btn" id="vRandom">Putar video acak</button></div>
     </div>
     <div class="base"><div class="chips" id="vChips"></div><div class="vgrid" id="vGrid"></div></div>
+  </section>
+
+  <section id="alat" class="opened c-alat" hidden>
+    <button class="back" id="alatBack">‹ Kembali ke semua koper</button>
+    <div class="lid">
+      <div class="inner"><h2>Alat Bantu Daring</h2><p>Aplikasi dan situs yang bisa membantu permainan di kelas. Klik untuk membuka di tab baru.</p></div>
+      <div class="actions"><button class="btn admin-only" id="tAddBtn">+ Tambah alat</button></div>
+    </div>
+    <div class="base"><div id="tSections"></div>
+      <p class="tnote">Alat-alat ini milik pihak lain, bukan Bapelkes Mataram. Sebagian besar punya versi gratis dengan batasan yang bisa berubah, jadi cek dulu sebelum dipakai di kelas besar. Gunakan nama panggilan saja, jangan memasukkan data pribadi peserta.</p></div>
   </section>
 
   <section id="dash" class="dash" hidden>
@@ -458,6 +502,18 @@ body.is-admin #dlgStage{padding:9px 14px}
   <div class="dlg-actions"><button class="btn" id="vfSave">Simpan &amp; terbitkan</button><button class="btn ghost" id="vfCancel">Batal</button></div>
 </dialog>
 
+<dialog id="tForm" aria-labelledby="tfTitle" class="c-alat">
+  <div class="dlg-lid"><div class="inner"><h2 id="tfTitle">Tambah alat</h2><div class="meta">Alat bantu daring yang bisa diakses semua fasilitator.</div></div>
+    <button class="close" id="tfClose" aria-label="Tutup">×</button></div>
+  <div class="dlg-body" style="min-height:0"><div class="form">
+    <label>Kategori<select id="tfCat"></select></label>
+    <div class="two"><label>Nama alat<input id="tfName" maxlength="60"></label><label>Link<input id="tfUrl" type="url" placeholder="https://..."></label></div>
+    <label>Keterangan singkat<textarea id="tfDesc" maxlength="200" style="min-height:60px"></textarea></label>
+    <p class="err" id="tfErr" aria-live="polite"></p>
+  </div></div>
+  <div class="dlg-actions"><button class="btn" id="tfSave">Simpan &amp; terbitkan</button><button class="btn ghost" id="tfCancel">Batal</button><span class="spacer"></span><button class="btn danger" id="tfDel" hidden>Hapus</button></div>
+</dialog>
+
 <dialog id="formDlg" aria-labelledby="formTitle">
   <div class="dlg-lid"><div class="inner"><h2 id="formTitle">Tambah permainan</h2><div class="meta">Perubahan langsung diterbitkan ke website setelah disimpan.</div></div>
     <button class="close" id="formClose" aria-label="Tutup">×</button></div>
@@ -533,7 +589,7 @@ const KOLEKSI_BARU=[{"id": "nama-sifat", "cat": "kenal", "name": "Nama dan Kata 
 let META={};
 let VIDEOS=[];
 function normVideo(v){return {id:String(v.id||("v-"+Math.random().toString(36).slice(2,8))),name:String(v.name||"Video"),url:String(v.url||""),tag:String(v.tag||"Lainnya"),dur:+v.dur||0,note:String(v.note||"")}}
-function applyData(d){GAMES=d.games.map(norm);VIDEOS=(Array.isArray(d.videos)?d.videos:[]).map(normVideo).filter(v=>ytId(v.url));if(typeof renderTv==="function")renderTv();if(typeof loadUlasan==="function")loadUlasan();META=(d.pengaturan&&typeof d.pengaturan==="object")?d.pengaturan:{};if(typeof initStats==="function")initStats()}
+function applyData(d){GAMES=d.games.map(norm);if(Array.isArray(d.alat)&&typeof normAlat==="function"){ALAT=d.alat.map(normAlat).filter(a=>safeUrl(a.url));renderTb()}VIDEOS=(Array.isArray(d.videos)?d.videos:[]).map(normVideo).filter(v=>ytId(v.url));if(typeof renderTv==="function")renderTv();if(typeof loadUlasan==="function")loadUlasan();META=(d.pengaturan&&typeof d.pengaturan==="object")?d.pengaturan:{};if(typeof initStats==="function")initStats()}
 const findGame=id=>GAMES.find(g=>g.id===id);
 
 // ---- views
@@ -564,19 +620,11 @@ document.getElementById("randomBtn").onclick=()=>{const l=GAMES.filter(g=>g.cat=
 const dlg=document.getElementById("dlg");let current=null;
 function ytId(u){const m=String(u).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/))([\w-]{11})/);return m?m[1]:null}
 function kindOf(u){if(/youtu\.?be/.test(u))return"YouTube";if(/drive\.google|docs\.google/.test(u))return"Google Drive";if(/kahoot/.test(u))return"Kahoot";if(/wordwall/.test(u))return"Wordwall";if(/menti/.test(u))return"Mentimeter";if(/canva/.test(u))return"Canva";return"Tautan"}
-const TOOLS={
-  kenal:[["Wheel of Names","https://wheelofnames.com","Roda putar nama"],["Mentimeter","https://www.mentimeter.com","Word cloud & polling"]],
-  energi:[["Wheel of Names","https://wheelofnames.com","Pilih pemandu acak"],["Wordwall","https://wordwall.net","Permainan layar interaktif"]],
-  kuis:[["Kahoot!","https://kahoot.com","Kuis via HP peserta"],["Wordwall","https://wordwall.net","Kuis & permainan review"],["Mentimeter","https://www.mentimeter.com","Kuis & polling"]],
-  tim:[["Wordwall","https://wordwall.net","Tantangan antartim"]],
-  kelompok:[["Wheel of Names","https://wheelofnames.com","Undian kelompok"]],
-  refleksi:[["Mentimeter","https://www.mentimeter.com","Word cloud kesan peserta"],["Padlet","https://padlet.com","Dinding refleksi daring"]]
-};
 function openGame(id){
   const g=findGame(id);if(!g)return;current=g;dlg.className="c-"+g.cat;
   document.getElementById("dlgTitle").textContent=g.name;
   document.getElementById("dlgMeta").innerHTML=`<span><strong>${g.dur} menit</strong></span><span><strong>${g.min}–${g.max}</strong> peserta</span><span>${g.space==="gerak"?"Perlu bergerak":"Bisa sambil duduk"}</span>`;
-  const pk=[["panduan","Panduan"],["persiapan","Bahan & tips"],["media","Video & tautan"]];
+  const pk=[["panduan","Panduan"],["persiapan","Bahan & tips"],["media","Video contoh"]];
   if(g.digital) pk.unshift(["play","Main di layar"]);
   document.getElementById("pockets").innerHTML=pk.map(p=>`<button role="tab" data-p="${p[0]}">${p[1]}</button>`).join("");
   document.querySelectorAll("#pockets button").forEach(b=>b.onclick=()=>showPocket(b.dataset.p));
@@ -599,9 +647,8 @@ function showPocket(p){
     const vid=g.links.map(l=>ytId(l.url)).find(Boolean);
     const q=g.yt||(g.name+" ice breaking pelatihan");
     if(vid) h+=`<h4>Video contoh</h4><div class="video"><iframe src="https://www.youtube-nocookie.com/embed/${vid}" title="Video contoh ${esc(g.name)}" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`;
-    if(g.links.length) h+=`<h4>Tautan bahan & video</h4><ul class="linklist">${g.links.map(l=>`<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a><span class="kind">${kindOf(l.url)}</span></li>`).join("")}</ul>`;
-    h+=`<h4>${vid?"Cari video lain":"Video contoh"}</h4><ul class="linklist"><li><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank" rel="noopener">Cari “${esc(q)}” di YouTube</a><span class="kind">YouTube</span></li></ul>
-      <h4>Alat bantu daring</h4><ul class="linklist">${TOOLS[g.cat].map(t=>`<li><a href="${t[1]}" target="_blank" rel="noopener">${t[0]}</a><span class="kind">${t[2]}</span></li>`).join("")}</ul>`;
+    if(g.links.length) h+=`<h4>Tautan lainnya</h4><ul class="linklist">${g.links.map(l=>`<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a><span class="kind">${kindOf(l.url)}</span></li>`).join("")}</ul>`;
+    h+=`<h4>${vid?"Cari video lain":"Video contoh"}</h4><ul class="linklist"><li><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(q)}" target="_blank" rel="noopener">Cari “${esc(q)}” di YouTube</a><span class="kind">YouTube</span></li></ul>`;
   }
   if(p==="play"){
     const tool=g.digital==="groups"
@@ -763,6 +810,28 @@ document.getElementById("rvSend").onclick=async()=>{
   }catch(e){err.textContent="Ulasan belum terkirim. Periksa koneksi internet lalu coba lagi."}finally{btn.disabled=false}
 };
 
+
+// ================= ALAT BANTU DARING =================
+const ALAT_CATS={"kuis": "Kuis & review materi", "polling": "Polling, word cloud & tanya jawab", "undian": "Undian, timer & alat kelas", "kolaborasi": "Kolaborasi & papan bersama", "gambar": "Tebak gambar"};
+const ALAT_DEFAULT=[{"id": "kahoot", "cat": "kuis", "name": "Kahoot!", "url": "https://kahoot.com", "desc": "Kuis pilihan ganda kompetitif lewat HP, lengkap dengan musik dan papan skor."}, {"id": "quizizz", "cat": "kuis", "name": "Quizizz", "url": "https://quizizz.com", "desc": "Kuis yang dikerjakan dengan kecepatan masing-masing peserta. Cocok untuk pre-test dan post-test ringan."}, {"id": "wordwall", "cat": "kuis", "name": "Wordwall", "url": "https://wordwall.net", "desc": "Puluhan templat permainan: roda putar, cocokkan pasangan, tebak kata, labirin."}, {"id": "blooket", "cat": "kuis", "name": "Blooket", "url": "https://www.blooket.com", "desc": "Kuis yang dikemas seperti permainan, disukai peserta yang lebih muda."}, {"id": "baamboozle", "cat": "kuis", "name": "Baamboozle", "url": "https://www.baamboozle.com", "desc": "Kuis tim di satu layar proyektor, tanpa perlu HP peserta."}, {"id": "jeopardylabs", "cat": "kuis", "name": "JeopardyLabs", "url": "https://jeopardylabs.com", "desc": "Papan kuis kategori × nilai yang dibuat langsung di browser."}, {"id": "crosswordlabs", "cat": "kuis", "name": "Crossword Labs", "url": "https://crosswordlabs.com", "desc": "Membuat teka-teki silang dari daftar istilah materi."}, {"id": "genially", "cat": "kuis", "name": "Genially", "url": "https://genially.com", "desc": "Templat ruang teka-teki (escape room) interaktif untuk review materi yang lebih panjang."}, {"id": "mentimeter", "cat": "polling", "name": "Mentimeter", "url": "https://www.mentimeter.com", "desc": "Polling, word cloud, skala, dan kuis yang langsung tampil di layar."}, {"id": "slido", "cat": "polling", "name": "Slido", "url": "https://www.slido.com", "desc": "Tanya jawab anonim dan polling, membantu peserta yang malu bertanya."}, {"id": "answergarden", "cat": "polling", "name": "AnswerGarden", "url": "https://answergarden.ch", "desc": "Word cloud sangat sederhana tanpa perlu akun."}, {"id": "wheelofnames", "cat": "undian", "name": "Wheel of Names", "url": "https://wheelofnames.com", "desc": "Roda putar untuk mengundi nama, kelompok, atau topik."}, {"id": "classroomscreen", "cat": "undian", "name": "Classroomscreen", "url": "https://classroomscreen.com", "desc": "Satu layar berisi timer, pengundi nama, lampu lalu lintas, dan pengukur kebisingan."}, {"id": "flippity", "cat": "undian", "name": "Flippity", "url": "https://www.flippity.net", "desc": "Mengubah Google Sheet menjadi kartu, pengundi kelompok, atau papan kuis."}, {"id": "padlet", "cat": "kolaborasi", "name": "Padlet", "url": "https://padlet.com", "desc": "Dinding sticky note digital untuk refleksi, harapan, dan galeri jalan daring."}, {"id": "miro", "cat": "kolaborasi", "name": "Miro", "url": "https://miro.com", "desc": "Papan tulis bersama untuk peta konsep dan diskusi kelompok."}, {"id": "canva-wb", "cat": "kolaborasi", "name": "Canva Whiteboard", "url": "https://www.canva.com/online-whiteboard/", "desc": "Papan tulis bersama dengan banyak templat, mudah dipakai."}, {"id": "skribbl", "cat": "gambar", "name": "Skribbl.io", "url": "https://skribbl.io", "desc": "Tebak gambar ala Pictionary. Bisa ruang privat dengan daftar kata sendiri, tanpa akun."}, {"id": "garticphone", "cat": "gambar", "name": "Gartic Phone", "url": "https://garticphone.com", "desc": "Pesan berantai sambil menggambar dan menebak. Hasilnya hampir selalu lucu."}, {"id": "quickdraw", "cat": "gambar", "name": "Quick, Draw!", "url": "https://quickdraw.withgoogle.com", "desc": "Peserta menggambar, kecerdasan buatan Google mencoba menebak."}, {"id": "wordwall-gambar", "cat": "gambar", "name": "Wordwall (tebak gambar)", "url": "https://wordwall.net", "desc": "Templat gambar terbuka perlahan atau mencocokkan gambar dengan nama."}, {"id": "kahoot-gambar", "cat": "gambar", "name": "Kahoot! (gambar terbuka)", "url": "https://kahoot.com", "desc": "Pertanyaan dengan gambar yang terbuka perlahan; penebak tercepat dapat poin tertinggi."}];
+const ALAT_COLORS={kuis:"#3A78D8",polling:"#8458D2",undian:"#EE9F12",kolaborasi:"#12A89F",gambar:"#DC4F78"};
+function normAlat(a){return {id:String(a.id||("t-"+Math.random().toString(36).slice(2,8))),cat:ALAT_CATS[a.cat]?a.cat:"kuis",name:String(a.name||"Alat"),url:String(a.url||""),desc:String(a.desc||"")}}
+let ALAT=ALAT_DEFAULT.map(normAlat);
+views.alat=document.getElementById("alat");
+function renderTb(){const el=document.getElementById("tbCount");if(el)el.textContent=ALAT.length+" alat"}
+function initials(n){const w=n.replace(/[^A-Za-z0-9 ]/g," ").trim().split(/\s+/);return ((w[0]||"?")[0]+((w[1]||"")[0]||(w[0]||"")[1]||"")).toUpperCase()}
+function renderAlat(){
+  let i=0;
+  document.getElementById("tSections").innerHTML=Object.entries(ALAT_CATS).map(([k,label])=>{
+    const list=ALAT.filter(a=>a.cat===k);if(!list.length&&!isAdmin)return "";i++;
+    return `<div class="tsec"><h3><span class="num">${i}</span>${esc(label)}</h3><div class="tgrid">${list.map(a=>`<div><a class="tcard" href="${esc(safeUrl(a.url)||"#")}" target="_blank" rel="noopener" data-id="${esc(a.id)}"><span class="ini" style="--tc:${ALAT_COLORS[a.cat]}">${esc(initials(a.name))}</span><span><h4>${esc(a.name)}</h4><p>${esc(a.desc)}</p></span><span class="go" aria-hidden="true">↗</span></a>${isAdmin?`<button class="tedit" data-edit="${esc(a.id)}">Ubah</button>`:""}</div>`).join("")||`<p class="tnote">Belum ada alat di kategori ini.</p>`}</div></div>`}).join("");
+  document.querySelectorAll("#tSections .tcard").forEach(a=>a.addEventListener("click",()=>{const t=ALAT.find(x=>x.id===a.dataset.id);if(t&&typeof track==="function")track("alat-"+t.id,t.name)}));
+  document.querySelectorAll("#tSections [data-edit]").forEach(b=>b.onclick=()=>{if(typeof openTForm==="function")openTForm(ALAT.find(x=>x.id===b.dataset.edit))});
+}
+document.getElementById("tbBtn").onclick=()=>{show("alat");renderAlat();document.getElementById("alatBack").focus();if(typeof track==="function")track("koper-alat","Alat Bantu Daring")};
+document.getElementById("alatBack").onclick=()=>{show("home");document.getElementById("tbBtn").focus()};
+renderTb();
+
 // =====================================================================
 // MODE ADMIN — edit langsung di halaman ini, terbit ke GitHub
 // =====================================================================
@@ -777,7 +846,7 @@ function b64dec(c){const b=atob(c.replace(/\n/g,""));const u=new Uint8Array(b.le
 function b64enc(t){const u=new TextEncoder().encode(t);let b="";for(let i=0;i<u.length;i+=0x8000)b+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(b)}
 function ghMsg(st){if(st===401)return"Token salah atau sudah kedaluwarsa.";if(st===403)return"Token belum punya izin menulis (Contents: Read and write, atau centang public_repo untuk token klasik).";if(st===404)return"Repository tidak ditemukan atau token tidak diberi akses ke repository ini.";if(st===409||st===422)return"Terjadi bentrok dengan perubahan lain. Muat ulang halaman lalu coba lagi.";return"Tidak bisa tersambung ke GitHub. Periksa koneksi internet."}
 async function ghRead(){const r=await fetch(api(`contents/games.json?ref=${encodeURIComponent(gh.branch)}`),{headers:hdr(),cache:"no-store"});if(!r.ok)throw r.status;const j=await r.json();ghSha=j.sha;return JSON.parse(b64dec(j.content))}
-function snapshot(){return {diperbarui:new Date().toISOString().slice(0,10),pengaturan:META,videos:VIDEOS,games:GAMES.map(g=>({id:g.id,cat:g.cat,name:g.name,tujuan:g.tujuan,dur:g.dur,min:g.min,max:g.max,space:g.space,bahan:g.bahan,langkah:g.langkah,tips:g.tips,refleksi:g.refleksi,digital:g.digital,yt:g.yt,links:g.links}))}}
+function snapshot(){return {diperbarui:new Date().toISOString().slice(0,10),pengaturan:META,videos:VIDEOS,alat:ALAT,games:GAMES.map(g=>({id:g.id,cat:g.cat,name:g.name,tujuan:g.tujuan,dur:g.dur,min:g.min,max:g.max,space:g.space,bahan:g.bahan,langkah:g.langkah,tips:g.tips,refleksi:g.refleksi,digital:g.digital,yt:g.yt,links:g.links}))}}
 async function ghWrite(msg){
   const body={message:msg||"Perbarui data permainan",content:b64enc(JSON.stringify(snapshot(),null,1)),branch:gh.branch};if(ghSha)body.sha=ghSha;
   let r=await fetch(api("contents/games.json"),{method:"PUT",headers:hdr(),body:JSON.stringify(body)});
@@ -795,9 +864,9 @@ function publish(msg){
     catch(st){setAdminStatus("Belum terbit: "+ghMsg(typeof st==="number"?st:0),"bad");$("retryBtn").hidden=false}});
 }
 $("retryBtn").onclick=()=>publish("Perbarui data permainan");
-function refreshViews(){renderRack();renderTv();if(!views.vid.hidden)renderVideos();if(vDlg.open&&curVid){const v=VIDEOS.find(x=>x.id===curVid.id);if(v)openVideo(v.id,true);else closeVideo()}if(curCat)openCat(curCat,true);if(dlg.open&&current){const g=findGame(current.id);if(g)openGame(g.id);else dlg.close()}}
-function enterAdmin(){setTimeout(()=>paintKoleksi());setTimeout(()=>{if(!views.dash.hidden)renderDash()});isAdmin=true;document.body.classList.add("is-admin");$("adminBtn").hidden=true;$("adminBar").hidden=false;setAdminStatus(`Mode admin aktif. <span class="muted">${adminSummary()}</span>`)}
-function exitAdmin(forget){setTimeout(()=>paintKoleksi());isAdmin=false;setTimeout(()=>{if(!views.vid.hidden)renderVideos()});if(!views.dash.hidden)setTimeout(renderDash);document.body.classList.remove("is-admin");$("adminBtn").hidden=false;$("adminBar").hidden=true;
+function refreshViews(){renderRack();renderTv();renderTb();if(!views.alat.hidden)renderAlat();if(!views.vid.hidden)renderVideos();if(vDlg.open&&curVid){const v=VIDEOS.find(x=>x.id===curVid.id);if(v)openVideo(v.id,true);else closeVideo()}if(curCat)openCat(curCat,true);if(dlg.open&&current){const g=findGame(current.id);if(g)openGame(g.id);else dlg.close()}}
+function enterAdmin(){setTimeout(()=>{if(!views.alat.hidden)renderAlat()});setTimeout(()=>paintKoleksi());setTimeout(()=>{if(!views.dash.hidden)renderDash()});isAdmin=true;document.body.classList.add("is-admin");$("adminBtn").hidden=true;$("adminBar").hidden=false;setAdminStatus(`Mode admin aktif. <span class="muted">${adminSummary()}</span>`)}
+function exitAdmin(forget){setTimeout(()=>{if(!views.alat.hidden)renderAlat()});setTimeout(()=>paintKoleksi());isAdmin=false;setTimeout(()=>{if(!views.vid.hidden)renderVideos()});if(!views.dash.hidden)setTimeout(renderDash);document.body.classList.remove("is-admin");$("adminBtn").hidden=false;$("adminBar").hidden=true;
   if(forget){gh.token="";try{localStorage.removeItem("km-gh");sessionStorage.removeItem("km-gh")}catch(e){}}}
 
 // ---- login: kata sandi (token terenkripsi) atau token
@@ -1005,6 +1074,23 @@ $("kolBtn").onclick=()=>{
   // sisipkan setelah permainan terakhir di kategori yang sama
   Object.entries(byCat).forEach(([cat,list])=>{let last=-1;GAMES.forEach((g,i)=>{if(g.cat===cat)last=i});if(last<0)GAMES.push(...list);else GAMES.splice(last+1,0,...list)});
   META={...META,koleksi:KOLEKSI_VERSI};refreshViews();paintKoleksi();publish(`Tambah ${add.length} permainan baru`);
+};
+
+
+// ---- admin: alat bantu daring
+const tForm=$("tForm");let tEditing=null;
+$("tfCat").innerHTML=Object.entries(ALAT_CATS).map(([k,l])=>`<option value="${k}">${esc(l)}</option>`).join("");
+function openTForm(a){tEditing=a||null;$("tfTitle").textContent=a?"Ubah alat":"Tambah alat";$("tfCat").value=a?a.cat:"kuis";$("tfName").value=a?a.name:"";$("tfUrl").value=a?a.url:"";$("tfDesc").value=a?a.desc:"";$("tfErr").textContent="";$("tfDel").hidden=!a;tForm.showModal();$("tfName").focus()}
+$("tAddBtn").onclick=()=>openTForm(null);
+$("tfClose").onclick=$("tfCancel").onclick=()=>tForm.close();
+$("tfDel").onclick=()=>{const a=tEditing;if(!a||!confirm(`Hapus “${a.name}” dari daftar alat?`))return;ALAT=ALAT.filter(x=>x.id!==a.id);tForm.close();renderTb();renderAlat();publish("Hapus alat: "+a.name)};
+$("tfSave").onclick=()=>{
+  const name=$("tfName").value.trim(),url=$("tfUrl").value.trim(),err=$("tfErr");
+  if(!name){err.textContent="Nama alat wajib diisi.";return}
+  if(!safeUrl(url)){err.textContent="Link harus lengkap, diawali https://";return}
+  const a=normAlat({id:tEditing?tEditing.id:"t-"+Date.now().toString(36),cat:$("tfCat").value,name,url,desc:$("tfDesc").value.trim()});
+  if(tEditing)ALAT=ALAT.map(x=>x.id===a.id?a:x);else ALAT.push(a);
+  tForm.close();renderTb();renderAlat();publish((tEditing?"Ubah":"Tambah")+" alat: "+a.name);
 };
 
 // ---- otomatis masuk bila token tersimpan
