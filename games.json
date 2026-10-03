@@ -1,5 +1,5 @@
 {
- "diperbarui": "2026-10-01",
+ "diperbarui": "2026-10-03",
  "pengaturan": {
   "kunci": {
    "v": 1,
@@ -82,6 +82,14 @@
    "url": "https://www.youtube.com/watch?v=jwgOhd9pNjk",
    "tag": "Senam",
    "dur": 2.24,
+   "note": ""
+  },
+  {
+   "id": "v-murrvf5t",
+   "name": "SENAM PEREGANGAN",
+   "url": "https://www.youtube.com/watch?v=1pVDUxhr67Y",
+   "tag": "Peregangan",
+   "dur": 4.58,
    "note": ""
   }
  ],
